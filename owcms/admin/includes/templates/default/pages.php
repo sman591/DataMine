@@ -55,6 +55,7 @@
 						<label class="control-label" for="position">Parent</label>
 						<div class="controls">
 							<select name="position">
+								<option value="0">(no parent)</option>
 								<? 
 								
 								function print_option($item, $depth, $selected_id) {
@@ -179,6 +180,7 @@
 				
 				<label>Parent</label>
 				<select name="parent">
+					<option value="0">(no parent)</option>
 					<? 
 					
 					function print_option($item, $depth) {
