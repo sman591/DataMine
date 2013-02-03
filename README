@@ -10,3 +10,10 @@ Team Members
 
 Joban Dhillon (https://github.com/joban66)
 Stuart Olivera (https://github.com/sman591)
+
+Web Setup
+---------
+
+* /owcms - All files for the base of the website for oWeb CMS
+* /resources - CSS, JS, etc for public web
+* /server - API Calls for Backbone.js
