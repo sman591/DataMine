@@ -8,8 +8,6 @@ class owcms_site {
 	
 		/* Returns current enviornment (LIVE, STAGE, TEST, LOCAL). Default is LIVE. */
 		
-		return 'LIVE';
-		
 		require_once($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
 		
 		global $config;
