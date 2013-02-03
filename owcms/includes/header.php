@@ -53,6 +53,8 @@ switch ($site->current_env()) {
 	
 }
 
+error_reporting(E_ALL ^ E_NOTICE ^ E_USER_NOTICE);
+
 /* Connect to MySQL Database */
 $mysql_connection = mysql_connect(MYSQL_DATABASE, MYSQL_USER, MYSQL_PASSWORD);
 
