@@ -19,7 +19,7 @@ echo '<!DOCTYPE html>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="shortcut icon" href="/resources/images/favicon.ico"/>
 		<link rel="stylesheet" href="/resources/bootstrap-2.2.2/css/bootstrap'.$testingMin.'.css" type="text/css" />
-		<link href="/resources/cosmo/bootstrap.min.css" rel="stylesheet">
+		<link href="/resources/cosmo/css/bootstrap.min.css" rel="stylesheet">
 		<style type="text/css">
 	      body {
 	        padding-top: 60px;
