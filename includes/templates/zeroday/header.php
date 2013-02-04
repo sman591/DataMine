@@ -34,9 +34,7 @@ echo '<!DOCTYPE html>
 		<link type="text/css" href="/resources/js/jqueryui/css/sdband/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
 		
 		<link rel="stylesheet" href="/resources/jQuery-File-Upload-master/css/jquery.fileupload-ui.css">
-		<noscript><link rel="stylesheet" href="/resources/jQuery-File-Upload-master/css/jquery.fileupload-ui-noscript.css"></noscript>
-		
-		<link rel="stylesheet" href="/resources/mejs-2.9.5/mediaelementplayer.min.css" />';
+		<noscript><link rel="stylesheet" href="/resources/jQuery-File-Upload-master/css/jquery.fileupload-ui-noscript.css"></noscript>';
 		
 		echo stripcslashes($option->details('ga'));
 

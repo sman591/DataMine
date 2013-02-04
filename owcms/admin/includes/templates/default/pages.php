@@ -151,6 +151,40 @@
 				<a class="btn btn-small pull-right toggle-all" href="<? echo ADMIN_LOCATION.'#'.ADMIN_LOCATION; ?>pages/"><i class="icon-arrow-left"></i>&nbsp;&nbsp;Back to Pages</a>
 				<h3>Delete Page</h3>
 			</div>
+			
+			<? $page = new owcms_page('id:'.$this->get_url_query('id'), true);
+		
+			if (!$page->page_exists) { ?>
+			
+				<div class="alert alert-error">
+					Page not found!
+				</div>
+			
+			<? }
+			else { ?>
+			
+				<form action="/owcms/admin/resources/save/page.php" method="post">
+					
+					<input type="hidden" name="id" value="<? echo $page->details('id'); ?>">
+					<input type="hidden" name="action" value="delete">
+					
+					<div class="alert">Make sure all child pages are deleted or assigned to different parents before deleting this page</div>
+					
+					<p class="text-error">You are about to delete the following page:</p>
+					
+					<br>
+					
+					<code>ID: <? echo $page->details('id'); ?>, "<? echo $page->details('name'); ?>"</code>
+					
+					<br>
+					
+					<hr>
+						
+					<a href="<? echo ADMIN_LOCATION.'#'.ADMIN_LOCATION; ?>pages/" class="btn">Cancel</a>&nbsp;&nbsp;<button type="submit" class="btn btn-danger"><i class="icon-white icon-trash"></i>&nbsp; Delete</button>
+						
+				</form>
+			
+			<? } ?>
 		
 		</div>
 	
