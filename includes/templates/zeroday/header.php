@@ -68,7 +68,7 @@ if (!$this->is_bare()) {
 	echo '<div class="navbar navbar-inverse navbar-fixed-top">
 	<div class="navbar-inner">
 	<div class="container-fluid">
-	<a class="brand" href="/">oWeb Media</a>';
+	<a class="brand" href="/">'.SITE_NAME.'</a>';
 	
 	if ($user->details('id')) {
 	
