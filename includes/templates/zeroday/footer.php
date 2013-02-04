@@ -4,7 +4,7 @@
 
 <? if (!$this->is_bare()) { ?>
 <div id="footer">
-    Website by <a href="http://stuartolivera.com" target="_blank">Stuart Olivera</a> &nbsp;&nbsp; Optimized for <a href="http://www.google.com/chrome" target="_blank">Google Chrome</a>
+    Team Zero Day, Imagine Cup 2013 - World Citizenship
 </div><!--#footer-->
 <? } ?>
 
