@@ -31,7 +31,7 @@ switch ($site->current_env()) {
 	
 	case 'LOCAL':
 		
-		error_reporting(E_ERROR); 
+		error_reporting(E_ALL ^ E_NOTICE ^ E_USER_NOTICE);
 	
 	break;
 	case 'TEST':
@@ -53,8 +53,6 @@ switch ($site->current_env()) {
 	
 }
 
-error_reporting(E_ALL ^ E_NOTICE ^ E_USER_NOTICE);
-
 /* Connect to MySQL Database */
 $mysql_connection = mysql_connect(MYSQL_DATABASE, MYSQL_USER, MYSQL_PASSWORD);
 
@@ -69,7 +67,19 @@ mysql_select_db(MYSQL_TABLE, $mysql_connection);
 
 global $db;
 
-$db = new PDO('mysql:host='.MYSQL_DATABASE.';dbname='.MYSQL_TABLE.';charset=UTF-8', MYSQL_USER, MYSQL_PASSWORD);
+try {
+	$db = new PDO('mysql:host='.MYSQL_DATABASE.';dbname='.MYSQL_TABLE, MYSQL_USER, MYSQL_PASSWORD);
+}
+catch(PDOException $e) {
+
+	error_log($e->getMessage());	    
+	
+	if ($site->current_env() != 'LIVE')
+		echo $e->getMessage().'<br />';
+	
+    die("A database error was encountered");
+    
+}
 
 /* Start session for auth & other uses */
 if (ENABLE_SESSIONS)

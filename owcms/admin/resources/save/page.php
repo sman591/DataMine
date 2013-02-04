@@ -22,43 +22,68 @@ if ($_POST['id']) {
 		die('Invalid page ID');
 	}
 	
-	$update_values = array(
-		':position'		=> $_POST['position'],
-		':order'		=> $_POST['order'],
-		':slug'			=> $_POST['slug'],
-		':name'			=> $_POST['name'],
-		':subtitle'		=> $_POST['subtitle'],
-		':header'		=> $_POST['header'],
-		':content'		=> $_POST['content'],
-		':template'		=> $_POST['template'],
-		':enabled'		=> $_POST['enabled'],
-		':hasdropdown'	=> $_POST['hasdropdown'],
-		':id'			=> $id
-	);
+	if ($_POST['action']=='delete') {
 	
-	$sql = "UPDATE `pages` 
-			SET `position`=:position,
-			`order`=:order,
-			`slug`=:slug,
-			`name`=:name,
-			`subtitle`=:subtitle,
-			`header`=:header,
-			`content`=:content,
-			`template`=:template,
-			`enabled`=:enabled,
-			`hasdropdown`=:hasdropdown
-			WHERE id=:id";
-	$q = $db->prepare($sql);
+		$params = array(
+			':id'			=> $id
+		);
+		
+		$sql = "DELETE FROM `pages`
+				WHERE `id`=:id";
+		$q = $db->prepare($sql);
+		
+		$q->execute($params);
 	
-	$q->execute($update_values);
+		if ($db->errorCode() !== '00000') {
+			echo 'Execute fail: ';
+			die(print_r($q->errorInfo(), true));
+			exit;
+		}
+		
+		header('Location: '.ADMIN_LOCATION.'#'.ADMIN_LOCATION.'pages/');
 	
-	if ($db->errorCode() !== '00000') {
-		echo 'Execute fail: ';
-		die(print_r($q->errorInfo(), true));
-		exit;
 	}
+	else {
 	
-	header('Location: '.ADMIN_LOCATION.'#'.ADMIN_LOCATION.'pages/');
+		$params = array(
+			':position'		=> $_POST['position'],
+			':order'		=> $_POST['order'],
+			':slug'			=> $_POST['slug'],
+			':name'			=> $_POST['name'],
+			':subtitle'		=> $_POST['subtitle'],
+			':header'		=> $_POST['header'],
+			':content'		=> $_POST['content'],
+			':template'		=> $_POST['template'],
+			':enabled'		=> $_POST['enabled'],
+			':hasdropdown'	=> $_POST['hasdropdown'],
+			':id'			=> $id
+		);
+		
+		$sql = "UPDATE `pages` 
+				SET `position`=:position,
+				`order`=:order,
+				`slug`=:slug,
+				`name`=:name,
+				`subtitle`=:subtitle,
+				`header`=:header,
+				`content`=:content,
+				`template`=:template,
+				`enabled`=:enabled,
+				`hasdropdown`=:hasdropdown
+				WHERE `id`=:id";
+		$q = $db->prepare($sql);
+	
+		$q->execute($params);
+		
+		if ($db->errorCode() !== '00000') {
+			echo 'Execute fail: ';
+			die(print_r($q->errorInfo(), true));
+			exit;
+		}
+		
+		header('Location: '.ADMIN_LOCATION.'#'.ADMIN_LOCATION.'pages/');
+	
+	}
 	
 }
 else {

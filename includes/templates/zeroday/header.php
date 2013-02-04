@@ -34,9 +34,7 @@ echo '<!DOCTYPE html>
 		<link type="text/css" href="/resources/js/jqueryui/css/sdband/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
 		
 		<link rel="stylesheet" href="/resources/jQuery-File-Upload-master/css/jquery.fileupload-ui.css">
-		<noscript><link rel="stylesheet" href="/resources/jQuery-File-Upload-master/css/jquery.fileupload-ui-noscript.css"></noscript>
-		
-		<link rel="stylesheet" href="/resources/mejs-2.9.5/mediaelementplayer.min.css" />';
+		<noscript><link rel="stylesheet" href="/resources/jQuery-File-Upload-master/css/jquery.fileupload-ui-noscript.css"></noscript>';
 		
 		echo stripcslashes($option->details('ga'));
 
@@ -68,7 +66,7 @@ if (!$this->is_bare()) {
 	echo '<div class="navbar navbar-inverse navbar-fixed-top">
 	<div class="navbar-inner">
 	<div class="container-fluid">
-	<a class="brand" href="/">oWeb Media</a>';
+	<a class="brand" href="/">'.SITE_NAME.'</a>';
 	
 	if ($user->details('id')) {
 	
@@ -87,7 +85,7 @@ if (!$this->is_bare()) {
 	}
 	
 	echo '<ul class="nav">';
-		$pagesdb = mysql_query("SELECT * FROM pages WHERE enabled = '1' AND position = '0' ORDER BY `id` ASC");
+		$pagesdb = mysql_query("SELECT * FROM pages WHERE enabled = '1' AND position = '0' ORDER BY `order` ASC");
 		while ( $page = mysql_fetch_array( $pagesdb ) ) {
 			
 			if ($page['hasdropdown']=='1') {
@@ -97,7 +95,7 @@ if (!$this->is_bare()) {
 						<ul class="dropdown-menu">
 						<li class="'.$this->active($page['id'], $page['position']).'"><a href="/'.$page["slug"].'/">'.$this->details('name', $page['id']).'</a></li>';
 							$dropid = $page['id'];
-							$dropdb = mysql_query("SELECT * FROM `pages` WHERE position='$dropid' AND enabled = '1' ORDER BY `id` ASC ");
+							$dropdb = mysql_query("SELECT * FROM `pages` WHERE position='$dropid' AND enabled = '1' ORDER BY `order` ASC ");
 							while ($drop = mysql_fetch_array($dropdb) ) {
 								
 								if ($drop['hasdropdown']=='1') {
