@@ -66,7 +66,7 @@ if (!$this->is_bare()) {
 	echo '<div class="navbar navbar-inverse navbar-fixed-top">
 	<div class="navbar-inner">
 	<div class="container-fluid">
-	<a class="brand" href="/">'.SITE_NAME.'</a>';
+	<a class="brand" href="/"><em style="background: url('../resources/images/dMineLogoWhite-20.png') no-repeat; width: 101px; height: 96px; text-indent: -9999px; display: inline-block;">dm</em>Data<sup>MINE</sup></a>';
 	
 	if ($user->details('id')) {
 	
