@@ -22,8 +22,7 @@ echo '<!DOCTYPE html>
 		<link href="/resources/cosmo/css/bootstrap.min.css" rel="stylesheet">
 		<style type="text/css">
 	      body {
-	        padding-top: 60px;
-	        padding-bottom: 40px;
+	        padding-bottom: 15px;
 	      }
 	      .sidebar-nav {
 	        padding: 9px 0;
@@ -63,12 +62,15 @@ echo '<body id="page-'.$this->details('slug').'" '.$bodyclass.'>'; ?>
 
 if (!$this->is_bare()) {
 
-	echo '<div class="navbar navbar-inverse navbar-fixed-top">
-	<div class="navbar-inner">
-	<div class="container-fluid">
-	<a class="brand" href="/"><i style="background: url(\'../resources/images/dMineLogoWhite-20.png\') no-repeat; width: 26px; height: 20px; text-indent: -9999px; display: inline-block;">dm</i>Data<sup>MINE</sup></a>';
+	echo '<div class="navbar-wrapper">
+      <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
+
+        <div class="navbar navbar-inverse">
+          <div class="navbar-inner">
+          <div class="container-fluid">
+          	<a class="brand" href="/"><i style="background: url(\'../resources/images/dMineLogoWhite-20.png\') no-repeat; width: 26px; height: 20px; text-indent: -9999px; display: inline-block;">dm</i>Data<sup>MINE</sup></a>';
 	
-	if ($user->details('id')) {
+	if ($user->is_logged_in(true)) {
 	
 		echo '<div class="btn-group pull-right">
 			<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -134,7 +136,7 @@ if (!$this->is_bare()) {
 	echo '
 	</ul>
 	</div>
-	</div></div>'; 
+	</div></div></div>'; 
 
 }
 	
