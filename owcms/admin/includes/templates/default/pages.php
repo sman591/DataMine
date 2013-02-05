@@ -248,7 +248,7 @@
 				</select>
 				
 				<label>Order</label>
-				<input type="text" name="name" placeholder="1" class="input-mini" maxlength="2">
+				<input type="text" name="order" placeholder="1" class="input-mini" maxlength="2">
 				
 				<br>
 				
