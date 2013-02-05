@@ -1548,6 +1548,8 @@ function dynamicPage_load(act, callback) {
 	
 	if (newHash.indexOf('siteadmin') != -1 && currentHash.indexOf('siteadmin') == -1) {
 		
+		console.log(newHash);
+		
 		window.location = '/siteadmin/#' + newHash;
 		
 	}
@@ -1577,8 +1579,6 @@ function dynamicPage_load(act, callback) {
 	            	var data_text = trim($(live_data).text());
 	            	
 	            	if ( data_text.indexOf('REDIRECT:') === 0 ) {
-		            	
-		            	console.log(data_text.substring(9));
 		            	
 		            	window.location = data_text.substring(9);
 		            	
