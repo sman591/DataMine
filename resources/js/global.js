@@ -1018,7 +1018,7 @@ function songFiles_btn(tr_id, btn_type, is_in_dropdown) {
 		break;
 		default:
 		
-			console.log("Invalid btn type");
+			alert("Invalid btn type");
 		
 		break;
 		
@@ -1545,8 +1545,6 @@ function dynamicPage_load(act, callback) {
 	newHash = window.location.hash.substring(1);
 
 	currentHash = ""+$('.nav li.active > a').attr('href');
-	
-	console.log(currentHash);
 	
 	if (newHash.indexOf('siteadmin') != -1 && currentHash.indexOf('siteadmin') == -1) {
 		
