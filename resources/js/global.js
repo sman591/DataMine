@@ -1598,6 +1598,8 @@ function dynamicPage_load(act, callback) {
 					
 					ow_ajax_handler('error', 'reset', '#alert-global');
 					
+					$('#fullPageCarousel').remove();
+					
 					var subnav_html = live_data.find('#subnav_content').html();
 					
 					$('.subnav').html(subnav_html);
