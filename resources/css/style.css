@@ -512,7 +512,7 @@ table.users-admin td {padding: 11px 11px;}
 #fullPageCarousel .carousel-caption h3,
 #fullPageCarousel .carousel-caption p {
   color: #fff;
-  text-shadow: 0px 2px 7px rgba(0,0,0,.5);
+  text-shadow: 0px 2px 7px rgba(0,0,0,.4);
 }
 #fullPageCarousel .carousel-caption h1 {
     margin-bottom: 0;
