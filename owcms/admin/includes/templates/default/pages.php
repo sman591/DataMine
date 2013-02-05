@@ -100,7 +100,7 @@
 					<div class="control-group">
 						<label class="control-label" for="content">Content</label>
 						<div class="controls">
-							<textarea id="content" name="content" class="mceEditor span12" rows="25"><? echo $page->details('content'); ?></textarea>
+							<textarea id="content" name="content" class="mceEditor span12" rows="25"><? echo stripslashes($page->details('content')); ?></textarea>
 						</div>
 					</div>
 					
