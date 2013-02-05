@@ -1548,7 +1548,7 @@ function dynamicPage_load(act, callback) {
 	
 	if (newHash.indexOf('siteadmin') != -1 && currentHash.indexOf('siteadmin') == -1) {
 		
-		console.log(newHash);
+		console.log(currentHash);
 		
 		window.location = '/siteadmin/#' + newHash;
 		
