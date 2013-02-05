@@ -1550,7 +1550,7 @@ function dynamicPage_load(act, callback) {
 	console.log(window.location.pathname);
 	console.log('dammit');
 	
-	if (newHash.indexOf('siteadmin') != -1 && currentHash.indexOf('siteadmin') == -1 && window.location.indexOf('signin') == -1) {
+	if (newHash.indexOf('siteadmin') != -1 && currentHash.indexOf('siteadmin') == -1 && window.location.pathname.indexOf('signin') == -1) {
 		
 		window.location = '/siteadmin/#' + newHash;
 		
