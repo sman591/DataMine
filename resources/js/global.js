@@ -1546,10 +1546,6 @@ function dynamicPage_load(act, callback) {
 
 	currentHash = ""+$('.nav li.active > a').attr('href');
 	
-	console.log(window.location);
-	console.log(window.location.pathname);
-	console.log('AZURE. UPDATE THE FUCKING JAVASCRIPT FILE.');
-	
 	if (newHash.indexOf('siteadmin') != -1 && currentHash.indexOf('siteadmin') == -1 && window.location.pathname.indexOf('signin') == -1) {
 		
 		window.location = '/siteadmin/#' + newHash;
@@ -1560,8 +1556,7 @@ function dynamicPage_load(act, callback) {
 		window.location = '/#' + newHash;
 		
 	}
-
-    if (newHash) {
+    else if (newHash) {
     	
     	if (newHash!==currentHash) {
     	
