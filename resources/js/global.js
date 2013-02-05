@@ -1546,9 +1546,7 @@ function dynamicPage_load(act, callback) {
 
 	currentHash = ""+$('.nav li.active > a').attr('href');
 	
-	if (newHash.indexOf('siteadmin') != -1 && currentHash.indexOf('siteadmin') == -1) {
-		
-		console.log(currentHash);
+	if (newHash.indexOf('siteadmin') != -1 && currentHash.indexOf('siteadmin') == -1 && window.location.pathname.indexOf('signin') == -1) {
 		
 		window.location = '/siteadmin/#' + newHash;
 		
