@@ -1578,6 +1578,8 @@ function dynamicPage_load(act, callback) {
 	            	
 	            	if ( data_text.indexOf('REDIRECT:') === 0 ) {
 		            	
+		            	console.log(data_text.substring(9));
+		            	
 		            	window.location = data_text.substring(9);
 		            	
 		            	return true;
