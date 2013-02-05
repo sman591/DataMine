@@ -78,7 +78,7 @@ if (!$this->is_bare()) {
 				<span class="caret"></span>
 			</a>
 			<ul class="dropdown-menu">
-				<li><a href="/#/account/">Account</a></li>
+				<li><a href="/#/account">Account</a></li>
 				<li class="divider"></li>
 				<li><a href="/user/auth.php?logout=1">Sign Out</a></li>
 			</ul>
@@ -95,7 +95,7 @@ if (!$this->is_bare()) {
 				else {
 					echo '<li class="dropdown '.$this->active($page['id'], $page['position']).'"><a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$this->details('name', $page['id']).' <b class="caret"></b></a>
 						<ul class="dropdown-menu">
-						<li class="'.$this->active($page['id'], $page['position']).'"><a href="/'.$page["slug"].'/">'.$this->details('name', $page['id']).'</a></li>';
+						<li class="'.$this->active($page['id'], $page['position']).'"><a href="/'.$page["slug"].'">'.$this->details('name', $page['id']).'</a></li>';
 							$dropid = $page['id'];
 							$dropdb = mysql_query("SELECT * FROM `pages` WHERE position='$dropid' AND enabled = '1' ORDER BY `order` ASC ");
 							while ($drop = mysql_fetch_array($dropdb) ) {
@@ -106,16 +106,16 @@ if (!$this->is_bare()) {
 										echo '
 											<li class="divider"></li>
 											<li class="nav-header">'.$this->details('name', $page['id']).' '.$this->details('name', $drop['id']).'</li>
-											<li class="'.$this->active($drop['id'], $drop['position']).'"><a href="/'.$page["slug"].'/'.$drop["slug"].'/">'.$this->details('name', $drop['id']).'</a></li>';
+											<li class="'.$this->active($drop['id'], $drop['position']).'"><a href="/'.$page["slug"].'/'.$drop["slug"].'">'.$this->details('name', $drop['id']).'</a></li>';
 												$drop2id = $drop['id'];
 												$drop2db = mysql_query("SELECT * FROM `pages` WHERE position='$drop2id' AND enabled = '1' ORDER BY `id` ASC");
 												while ($drop2 = mysql_fetch_array($drop2db) ) {
-													echo '<li class="'.$this->active($drop2['id'], $page['position']).'"><a href="/'.$page["slug"].'/'.$drop["slug"].'/'.$drop2["slug"].'/">'.$this->details('name', $drop2['id']).'</a></li>';
+													echo '<li class="'.$this->active($drop2['id'], $page['position']).'"><a href="/'.$page["slug"].'/'.$drop["slug"].'/'.$drop2["slug"].'">'.$this->details('name', $drop2['id']).'</a></li>';
 												}
 									}
 								}
 								else {
-									echo '<li class="'.$this->active($drop['id'], $page['position']).'"><a href="/'.$page["slug"].'/'.$drop["slug"].'/">'.$this->details('name', $drop['id']).'</a></li>';
+									echo '<li class="'.$this->active($drop['id'], $page['position']).'"><a href="/'.$page["slug"].'/'.$drop["slug"].'">'.$this->details('name', $drop['id']).'</a></li>';
 								}
 							}
 						echo '</ul>
@@ -125,7 +125,7 @@ if (!$this->is_bare()) {
 			else {
 			
 				if ($page['slug']) {
-					echo '<li class="'.$this->active($page['id'], $page['position']).'"><a href="/'.stripslashes($page["slug"]).'/">'.$this->details("name", $page['id']).'</a></li>';
+					echo '<li class="'.$this->active($page['id'], $page['position']).'"><a href="/'.stripslashes($page["slug"]).'">'.$this->details("name", $page['id']).'</a></li>';
 				}
 				else {
 					echo '<li class="'.$this->active($page['id'], $page['position']).'"><a href="/">'.$this->details("name", $page['id']).'</a></li>';
