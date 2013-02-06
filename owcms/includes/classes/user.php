@@ -49,9 +49,12 @@ class owcms_user {
 				$this->user_exists = true;
 			
 			}
-			else {
-				trigger_error("User query returned no or too many users!", E_USER_NOTICE);
+			elseif (mysql_num_rows($query) > 1) {
+				trigger_error("User query returned too many users!", E_USER_NOTICE);
 				$this->user_exists = true;
+			}
+			else {
+				trigger_error("User query returned no users", E_USER_NOTICE);
 			}
 		
 		}
@@ -400,6 +403,60 @@ class owcms_user {
 		}
 		
 	} /* logout() */
+	
+	
+	public function signup($email = '', $details = array()) {
+		
+		/* Registers a new user
+			
+			$email		Email of new user (required)
+			$details	Values of user details (name_first, name_last, etc) */
+		
+		if (trim($email)=='') {
+			return 'No email provided';
+		}
+		
+		global $db;
+		
+		$details['email'] = $email;
+		
+		if (!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9+-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/i", $details['email']))
+			return 'Please enter a valid email';
+		
+		$user = new owcms_user('email:'.$details['email']);
+		
+		if ($user->user_exists === true)
+			return 'User already exists with the email '.$details['email'];
+		
+		/* Password */
+		$password = new owcms_password;
+		
+		if (!isset($details['password'])) {
+        
+	        $details['password'] = $password->generate_password(9,4);
+			
+		}
+		elseif (trim($details['password']) == '') {
+			return 'Password cannot be blank!';
+		}
+		
+		$details['password'] = $password->getPasswordHash( $password->getPasswordSalt(), $details['password'] );
+
+		foreach ($details as $field => $v)
+            $ins[] = ':' . $field;
+
+        $ins = implode(',', $ins);
+        $fields = implode(',', array_keys($details));
+        $sql = "INSERT INTO `users` ($fields) VALUES ($ins)";
+        
+        $dbh = $db->prepare($sql);
+        foreach ($details as $f => $v) {
+            $dbh->bindValue(':' . $f, $v);
+        }
+		
+		return $dbh->execute();
+		
+	}
     
 } /* class user */
 
