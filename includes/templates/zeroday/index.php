@@ -6,7 +6,7 @@
 		<h1><em style="background: url('../resources/images/dMineLogoBlue-96.png') no-repeat; width: 101px; height: 96px; text-indent: -9999px; display: inline-block; vertical-align: middle;">dm</em>Data<sup>MINE</sup></h1>
 		<h3>Discover knowledge, data, and community with simplicity</h3>
 		<p>Whether you are a scientist, student, or the average joe, DataMine makes it possible for you to share your data, research, and information with the whole world.</p>
-		<p><a class="btn btn-info btn-large" href="../#/about">Tell me more &raquo;</a></p>
+		<p><a class="btn btn-warning btn-large" href="../#/about">Tell me more &raquo;</a></p>
 	
 	</div>
 	
@@ -24,7 +24,7 @@
 						<label>Email</label>
 						<input type="text" name="name_first" />
 						<hr>
-						<button class="btn btn-info btn-large" type="submit">Sign Up</button>
+						<button class="btn btn-warning btn-large" type="submit">Sign Up</button>
 					</fieldset>
 				</form>
 			</div>

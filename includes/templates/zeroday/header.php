@@ -90,7 +90,7 @@ if (!$this->is_bare()) {
 		<form method="post" action="/user/auth.php" class="navbar-form pull-right">
 			<input type="text" name="email" class="span2" placeholder="Email">
 			<input type="password" name="password" class="span2" placeholder="Password">
-			<button type="submit" class="btn btn-info">Sign In</button>
+			<button type="submit" class="btn btn-warning">Sign In</button>
 		</form>
 		
 	<? }
