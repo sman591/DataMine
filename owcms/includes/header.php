@@ -53,7 +53,7 @@ switch ($site->current_env()) {
 	
 }
 
-if (DEBUG === true) {
+if (DEBUG === true)
 	error_reporting(E_ALL ^ E_NOTICE ^ E_USER_NOTICE);
 
 /* Connect to MySQL Database */
