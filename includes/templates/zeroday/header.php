@@ -175,64 +175,14 @@ if (!$this->is_bare()) {
 <div class="row-fluid">
 	<div class="span12">
 	
-	<? /* Handle Errors */
-	if ($_REQUEST['action']) {
-		switch ($_REQUEST['action']) {
-			case 1:
-				$alert_type		= 'block';
-				$alert_heading	= 'Incorrect Email/Password';
-				$alert_content	= '';
-			break;
-			case 2:
-				$alert_type		= 'success';
-				$alert_heading	= 'You have been logged out.';
-				$alert_content	= '';
-			break;
-			case 3:
-				$alert_type		= 'error';
-				$alert_heading	= 'Error signing up!';
-				$alert_content	= '';
-			break;
-			case 4:
-				$alert_type		= 'block';
-				$alert_heading	= 'Passwords do not match!';
-				$alert_content	= '';
-			break;
-			case 5:
-				$alert_type		= 'block';
-				$alert_heading	= 'Required fields left blank!';
-				$alert_content	= '';
-			break;
-			break;
-			case 6:
-				$alert_type		= 'success';
-				$alert_heading	= 'new owcms_user(s) created!';
-				$alert_content	= 'Initial password is <strong>password01</strong>';
-			break;
-			case 7:
-				$alert_type		= 'block';
-				$alert_heading	= 'Song '.base64_decode($_REQUEST['desc']).' not found!';
-				$alert_content	= 'Choose "this is a new song" if intended.';
-			break;
-			case 'saved':
-				$alert_type		= 'success';
-				$alert_heading	= 'Saved '.$_REQUEST['desc'].'';
-				$alert_content	= '';
-			break;
-			case 'admin':
-				$alert_type		= 'block';
-				$alert_heading	= 'You must be logged in as an administrator to view that content.';
-				$alert_content	= '';
-			break;
-			case 'login':
-				$alert_type		= 'block';
-				$alert_heading	= 'Please login!';
-			break;
-			default:
-				$alert_type		= 'block';
-				$alert_heading	= 'Unknown Errror';
-			break;
-		}
+	<? /* Handle Alerts */
+	
+	if ($this->get_url_query('signup') == 'success') {
+		$alert_type		= 'success';
+		$alert_heading	= 'Sign up has been successful! Please sign in with your newly created account.';
+	}
+	
+	if (isset($alert_heading) || isset($alert_content)) {
 		
 		$alert = new bootstrap_alert($alert_heading, $alert_content, $alert_type);
 		echo $alert->display();

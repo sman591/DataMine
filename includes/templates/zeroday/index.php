@@ -6,28 +6,28 @@
 		<h1><em style="background: url('../resources/images/dMineLogoBlue-96.png') no-repeat; width: 101px; height: 96px; text-indent: -9999px; display: inline-block; vertical-align: middle;">dm</em>Data<sup>MINE</sup></h1>
 		<h3>Discover knowledge, data, and community with simplicity</h3>
 		<p>Whether you are a scientist, student, or the average joe, DataMine makes it possible for you to share your data, research, and information with the whole world.</p>
-		<p><a class="btn btn-warning btn-large" href="../#/about">Tell me more &raquo;</a></p>
+		<br>
+		<p><a class="btn btn-warning btn-large" href="/#/about">Tell me more &raquo;</a></p>
 	
 	</div>
 	
 	<? if (!$user->is_logged_in(true)) : ?>
-		<div class="span4" style="height: 500px">
-			<div class="well">
-				<form>
-					<fieldset>
-						<h3>Sign Up</h3>
-						<br>
-						<label>First Name</label>
-						<input type="text" name="name_first" />
-						<label>Last Name</label>
-						<input type="text" name="name_first" />
-						<label>Email</label>
-						<input type="text" name="name_first" />
-						<hr>
-						<button class="btn btn-warning btn-large" type="submit">Sign Up</button>
-					</fieldset>
-				</form>
-			</div>
+		<div class="hero-unit sub-hero-unit span4" style="height: 490px">
+			<form method="post" action="/user/signup.php">
+				<fieldset>
+					<h3>Sign Up</h3>
+					<br>
+					<label for="name_first">First Name</label>
+					<input type="text" name="name_first" id="name_first" />
+					<label for="name_last">Last Name</label>
+					<input type="text" name="name_last" id="name_last" />
+					<label for="email">Email</label>
+					<input type="text" name="email" id="email" />
+					<label for="password">Password</label>
+					<input type="password" name="password" id="password" />
+					<button class="btn btn-warning btn-large" type="submit">Sign Up</button>
+				</fieldset>
+			</form>
 		</div>
 	<? endif; ?>
 	
