@@ -82,6 +82,14 @@
 	margin: -10px -15px -9px;
 }
 
+
+/* SUB-HERO UNIT */
+
+.sub-hero-unit {
+  padding: 30px;
+}
+
+
 /* FILE LIST */
 #songfiles_modal_content {
 	margin: -15px;
