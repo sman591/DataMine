@@ -25,7 +25,7 @@
 					<input type="text" name="email" id="email" />
 					<label for="password">Password</label>
 					<input type="password" name="password" id="password" />
-					<button class="btn btn-warning btn-large" type="submit" style="clear: both; margin-top: 10px;">Sign Up</button>
+					<button class="btn btn-warning btn-large" type="submit" style="clear: both; margin-top: 10px;display: block;">Sign Up</button>
 				</fieldset>
 			</form>
 		</div>
