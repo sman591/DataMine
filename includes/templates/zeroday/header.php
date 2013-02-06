@@ -85,6 +85,15 @@ if (!$this->is_bare()) {
 		</div>';
 		
 	}
+	else { ?>
+		
+		<form method="post" action="/user/auth.php" class="navbar-form pull-right">
+			<input type="text" name="email" class="span2" placeholder="Email">
+			<input type="password" name="password" class="span2" placeholder="Password">
+			<button type="submit" class="btn btn-info">Sign In</button>
+		</form>
+		
+	<? }
 	
 	echo '<ul class="nav">';
 		$pagesdb = mysql_query("SELECT * FROM pages WHERE enabled = '1' AND position = '0' ORDER BY `order` ASC");
