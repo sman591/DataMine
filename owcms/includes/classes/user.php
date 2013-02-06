@@ -413,7 +413,7 @@ class owcms_user {
 			$details	Values of user details (name_first, name_last, etc) */
 		
 		if (trim($email)=='') {
-			return 'No email provided';
+			return 'Please enter a valid email';
 		}
 		
 		global $db;
@@ -439,6 +439,9 @@ class owcms_user {
 		elseif (trim($details['password']) == '') {
 			return 'Password cannot be blank!';
 		}
+		
+		if (strlen($details['password']) <= 6 || strlen($details['password'] >= 20))
+			return 'Password must be between 6 and 20 character long';
 		
 		$details['password'] = $password->getPasswordHash( $password->getPasswordSalt(), $details['password'] );
 
