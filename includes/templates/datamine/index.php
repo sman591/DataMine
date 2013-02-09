@@ -10,7 +10,7 @@
 		<h3>Discover knowledge, data, and community with simplicity</h3>
 		<p>Whether you are a scientist, student, or the average joe, DataMine makes it possible for you to share your data, research, and information with the whole world.</p>
 		<br>
-		<p><a class="btn btn-warning btn-large" href="/#/about">Tell me more &raquo;</a></p>
+		<p><a class="btn btn-warning btn-large" href="/#/page/about">Tell me more &raquo;</a></p>
 	
 	</div>
 	
@@ -40,19 +40,19 @@
 	<div class="span4">
 		<h2>Knowledge</h2>
 		<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-		<p><a class="btn" href="#">View details &raquo;</a></p>
+		<p><a class="btn" href="/#/page/about">View details &raquo;</a></p>
 	</div>
 
 	<div class="span4">
 		<h2>Data</h2>
 		<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-		<p><a class="btn" href="#">View details &raquo;</a></p>
+		<p><a class="btn" href="/#/page/about">View details &raquo;</a></p>
 	</div>
 
 	<div class="span4">
 		<h2>Community</h2>
 		<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-		<p><a class="btn" href="#">View details &raquo;</a></p>
+		<p><a class="btn" href="/#/page/about">View details &raquo;</a></p>
 	</div>
 
 </div>
