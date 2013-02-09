@@ -139,7 +139,7 @@ class owcms_page {
 		
 		/* Returns if the page is requested dynamically (through javascript/ajax) */
 		
-		return ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest');
+		return ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' || strpos($_SERVER['REQUEST_URI'], '/server/') !== false);
 		
 	}
 	
@@ -261,7 +261,10 @@ class owcms_page {
 	}
 	
 	
-	public function initialize() {
+	public function initialize($return = false) {
+		
+		if ($return === true)
+			ob_start();
 		
 		if ($this->details('notfound')=='notfound') {
 			$this->trigger_404();
@@ -287,7 +290,7 @@ class owcms_page {
 		
 		/* ***** CUSTOMIZED FOR DYNAMIC PAGES ***** */
 		
-		if($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
+		if(!$this->is_dynamic()) {
 			
 			require $this->get_template_dir_path().'/header.php';
 		
@@ -339,13 +342,19 @@ class owcms_page {
 		echo '</div><!-- .row -->
 		</div><!-- #guts -->';
 		
-		if($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
+		if(!$this->is_dynamic()) {
 
 			require $this->get_template_dir_path().'/footer.php';
 		
 		}
 		
 		/* ***** END ***** */
+		
+		if ($return === true) {
+			$page_html = ob_get_contents();
+			ob_end_clean();
+			return $page_html;
+		}
 		
 	}
 	

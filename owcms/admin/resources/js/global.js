@@ -947,8 +947,8 @@ function tinymce_init() {
 	        mode : "specific_textareas",
 	        editor_selector : "mceEditor",
 	        content_css : "/resources/bootstrap-2.2.2/css/bootstrap.min.css",
-	        plugins : "fullscreen",
-	        theme_advanced_buttons3_add : "fullscreen",
+	        plugins : "fullscreen, codemagic",
+	        theme_advanced_buttons3_add : "fullscreen, codemagic",
 	        fullscreen_new_window : true,
 	        fullscreen_settings : {
 	                theme_advanced_path_location : "top"
