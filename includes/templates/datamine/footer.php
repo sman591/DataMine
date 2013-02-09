@@ -153,9 +153,6 @@ var AppRouter = Backbone.Router.extend({
 		this.page = new Page();
 		this.pageView = new PageView({model: this.page});
 		$('#guts').html(this.pageView.el);
-		
-		this.page.on("request", loading_notice('show'));
-		this.page.on("sync", loading_notice('hide'));
 	
 	},
 	
@@ -178,6 +175,9 @@ var AppRouter = Backbone.Router.extend({
 
 		if (!this.is_init)
 			this.init();
+
+		this.page.on("request", loading_notice('show'));
+		this.page.on("sync", loading_notice('hide'));
 
 		this.page.set('id', id);
 		this.page.fetch();
