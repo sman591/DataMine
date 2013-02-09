@@ -129,8 +129,6 @@ var PageView = Backbone.View.extend({
 		
 		slug = this.model.get('slug');
 		
-		console.log('it is: ' + slug);
-		
 		$(".nav li").removeClass("active");
 		$('.nav li a[href="#/'+slug+'"]').parent().addClass("active");
 		$('.nav li a[href="#/page/'+slug+'"]').parent().addClass("active");
@@ -155,6 +153,9 @@ var AppRouter = Backbone.Router.extend({
 		this.page = new Page();
 		this.pageView = new PageView({model: this.page});
 		$('#guts').html(this.pageView.el);
+		
+		this.page.on("request", loading_notice('show'));
+		this.page.on("sync", loading_notice('hide'));
 	
 	},
 	
