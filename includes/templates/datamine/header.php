@@ -75,7 +75,7 @@ if (!$this->is_bare()) {
 				<span class="caret"></span>
 			</a>
 			<ul class="dropdown-menu">
-				<li><a href="/#/account">Account</a></li>
+				<li><a href="/#/page/account">Account</a></li>
 				'.($user->is_admin() ? '<li><a href="/siteadmin/#/siteadmin/">Site Admin</a></li>' : '<li>hi</li>').'
 				<li class="divider"></li>
 				<li><a href="/user/auth.php?logout=1">Sign Out</a></li>
