@@ -1,3 +1,4 @@
+<? if ($this->is_dynamic()) { ?>
 <!-- Main hero unit for a primary marketing message or call to action -->
 <div class="row-fluid">
 
@@ -58,3 +59,4 @@ function custom_pageLoad() {
 	
 }
 </script>
+<? } ?>

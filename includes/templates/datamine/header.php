@@ -30,10 +30,7 @@ echo '<!DOCTYPE html>
 	    </style>
 		<link rel="stylesheet" href="/resources/bootstrap-2.2.2/css/bootstrap-responsive'.$testingMin.'.css" type="text/css" />
 		<link rel="stylesheet" href="/resources/css/style.css?v=1.1" type="text/css" />
-		<link type="text/css" href="/resources/js/jqueryui/css/sdband/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
-		
-		<link rel="stylesheet" href="/resources/jQuery-File-Upload-master/css/jquery.fileupload-ui.css">
-		<noscript><link rel="stylesheet" href="/resources/jQuery-File-Upload-master/css/jquery.fileupload-ui-noscript.css"></noscript>';
+		<link type="text/css" href="/resources/js/jqueryui/css/sdband/jquery-ui-1.8.16.custom.css" rel="stylesheet" />';
 		
 		echo stripcslashes($option->details('ga'));
 
@@ -79,6 +76,7 @@ if (!$this->is_bare()) {
 			</a>
 			<ul class="dropdown-menu">
 				<li><a href="/#/account">Account</a></li>
+				'.($user->is_admin() ? '<li><a href="/siteadmin/#/siteadmin/">Site Admin</a></li>' : '<li>hi</li>').'
 				<li class="divider"></li>
 				<li><a href="/user/auth.php?logout=1">Sign Out</a></li>
 			</ul>
@@ -134,10 +132,10 @@ if (!$this->is_bare()) {
 			else {
 			
 				if ($page['slug']) {
-					echo '<li class="'.$this->active($page['id'], $page['position']).'"><a href="/'.stripslashes($page["slug"]).'">'.$this->details("name", $page['id']).'</a></li>';
+					echo '<li class="'.$this->active($page['id'], $page['position']).'"><a href="#/page/'.stripslashes($page["slug"]).'">'.$this->details("name", $page['id']).'</a></li>';
 				}
 				else {
-					echo '<li class="'.$this->active($page['id'], $page['position']).'"><a href="/">'.$this->details("name", $page['id']).'</a></li>';
+					echo '<li class="'.$this->active($page['id'], $page['position']).'"><a href="#/">'.$this->details("name", $page['id']).'</a></li>';
 				}
 				
 			} /* else (if page hasdropdown) */
