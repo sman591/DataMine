@@ -1,4 +1,6 @@
-<? if ($this->is_dynamic()) { ?>
+<? if (!$this->is_dynamic())
+	echo '<noscript>';
+?>
 <!-- Main hero unit for a primary marketing message or call to action -->
 <div class="row-fluid">
 
@@ -59,4 +61,6 @@ function custom_pageLoad() {
 	
 }
 </script>
-<? } ?>
+<? if (!$this->is_dynamic())
+	echo '</noscript>';
+?>

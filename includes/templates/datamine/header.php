@@ -156,12 +156,9 @@ if (!$this->is_bare()) {
 	
 	<!-- REQUIRE JAVASCRIPT -->
 	<noscript>
-		<style type="text/css">
-			.container, .subnav, #main-content {display: none;}
-		</style>
-		<div style="padding: 20px 0;text-align: center;">
+		<div style="padding: 20px 0;text-align: center;" class="alert alert-error">
 		<h1>Sorry, this website requires JavaScript.</h1>
-		<h2>Please enable JavaScript or <a href="http://browsehappy.com/">switch browsers</a> (we recommend <a href="http://google.com/chrome/">Google Chrome</a>).</h2>
+		<h2>Please enable JavaScript or <a href="http://browsehappy.com/" style="background: #FCCFD2; padding: 2px 10px;">switch browsers</a> (we recommend <a href="http://google.com/chrome/" style="background: #FCCFD2; padding: 2px 10px;">Google Chrome</a>).</h2>
 		</div>
 	</noscript>
 
