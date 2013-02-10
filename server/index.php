@@ -12,13 +12,20 @@ $app = new \Slim\Slim(array(
 	'debug' => true
 ));
 
+/*
+
+	PAGE
+****************/
+
 $app->get('/page(/:slug)', function ($slug = false) {
 	
-	if (!$slug)
-		$page = new owcms_page('id:1');
-	else
-		$page = new owcms_page('slug:'.$slug);
+	$prepend_with_page = true;
 	
+	if (!$slug)
+		$page = new owcms_page('id:1', false, false);
+	else
+		$page = new owcms_page('slug:'.($prepend_with_page ? 'page/' : '').$slug, false, false);
+
 	if (!$page->page_exists) {
 		echo json_encode(array('error' => 'No page exists'));
 		exit;
@@ -32,10 +39,6 @@ $app->get('/page(/:slug)', function ($slug = false) {
 	
 	echo json_encode($output);
 	
-});
-
-$app->get('/hello/:name', function ($name) {
-    echo "Hello, $name";
 });
 
 $app->run();

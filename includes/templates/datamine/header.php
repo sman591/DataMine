@@ -132,7 +132,7 @@ if (!$this->is_bare()) {
 			else {
 			
 				if ($page['slug']) {
-					echo '<li class="'.$this->active($page['id'], $page['position']).'"><a href="#/page/'.stripslashes($page["slug"]).'">'.$this->details("name", $page['id']).'</a></li>';
+					echo '<li class="'.$this->active($page['id'], $page['position']).'"><a href="#/'.stripslashes($page["slug"]).'">'.$this->details("name", $page['id']).'</a></li>';
 				}
 				else {
 					echo '<li class="'.$this->active($page['id'], $page['position']).'"><a href="#/">'.$this->details("name", $page['id']).'</a></li>';
