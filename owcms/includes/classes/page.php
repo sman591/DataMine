@@ -6,7 +6,11 @@ class owcms_page {
 	
 	static public $is_owcms_admin = false;
 	
-	public function __construct($selector = '', $ignore_admin = false) {
+	public $output_error_html = true; /* Return error HTML when errors happen (such as $this->trigger_404() ) */
+	
+	public function __construct($selector = '', $ignore_admin = false, $output_error_html = true) {
+		
+		$this->output_error_html = $output_error_html;
 		
 		if ($selector===false)
 			return false;
@@ -41,8 +45,12 @@ class owcms_page {
 				
 				$parent_query = mysql_query("SELECT `id` FROM `".$this->get_pages_table()."` WHERE `slug`='".$slug."' AND `position`='".$position."'");
 
-				if (mysql_num_rows($parent_query)!=1)
-					$this->trigger_404();
+				if (mysql_num_rows($parent_query)!=1) {
+					if ($this->output_error_html === true)
+						$this->trigger_404();
+					else
+						return 404;
+				}
 				
 				$parent_array = mysql_fetch_array($parent_query);
 				
@@ -88,7 +96,10 @@ class owcms_page {
 			}
 			else {
 				trigger_error("Query returned no or too many pages!", E_USER_NOTICE);
-				$this->trigger_404();
+				if ($this->output_error_html === true)
+					$this->trigger_404();
+				else
+					return 404;
 			}
 		
 		}
@@ -260,14 +271,16 @@ class owcms_page {
 		
 	}
 	
-	
 	public function initialize($return = false) {
 		
 		if ($return === true)
 			ob_start();
 		
 		if ($this->details('notfound')=='notfound') {
-			$this->trigger_404();
+			if ($this->output_error_html === true)
+				$this->trigger_404();
+			else
+				return 404;
 		}
 		
 		$site = new owcms_site;
