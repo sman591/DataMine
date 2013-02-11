@@ -83,12 +83,90 @@ if (typeof jQuery == 'undefined')
 
 <script src="/resources/js/jquery.stickytableheaders.js" type="text/javascript"></script>
 
+<script type="text/template" id="userView_template">
+
+	<div class="page-header">
+		<h1>Your Account</h1>
+	</div>
+	
+	<form class="form-horizontal UserViewForm">
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label" for="name_first">First Name</label>
+				<div class="controls">
+					<input type="text" class="text" name="name_first" id="name_first" value="<%= name_first %>">
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="name_last">Last Name</label>
+				<div class="controls">
+					<input type="text" class="text" name="name_last" id="name_last" value="<%= name_last %>">
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="email">Email</label>
+				<div class="controls">
+					<input type="text" class="text" name="email" id="email" value="<%= email %>">
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="changePass">Change Password ** doesn't currently work</label>
+				<div class="controls">
+					<input type="checkbox" name="changePass" id="changePass" value="yes" onclick="$('#changePassword').toggle()"/>
+				</div>
+			</div>
+			<div id="changePassword" style="display: none;">
+				<div class="control-group">
+					<label class="control-label" for="cpass">Current Password</label>
+					<div class="controls">
+						<input type="password" class="text" name="cpass" id="cpass" value="">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="pass1">New Password</label>
+					<div class="controls">
+						<input type="password" class="text" name="pass1" id="pass1" value="">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="pass2">New Password (again)</label>
+					<div class="controls">
+						<input type="password" class="text" name="pass2" id="pass2" value="">
+					</div>
+				</div>
+			</div>
+			<div class="form-actions">
+				<button type="submit" name="saveSettings" class="btn btn-primary">Save</button>
+			</div>
+		</fieldset>
+	</form>
+
+</script>
 
 <script type="text/javascript">
 
 $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
   options.url = '/server' + options.url;
 });
+
+$.fn.serializeObject = function() {
+  var o = {};
+  var a = this.serializeArray();
+  $.each(a, function() {
+      if (o[this.name] !== undefined) {
+          if (!o[this.name].push) {
+              o[this.name] = [o[this.name]];
+          }
+          o[this.name].push(this.value || '');
+      } else {
+          o[this.name] = this.value || '';
+      }
+  });
+  return o;
+};
+
+
+/* PAGE */
 
 var Page = Backbone.Model.extend({
 	
@@ -97,7 +175,7 @@ var Page = Backbone.Model.extend({
 	defaults: {
 		title:		'',
 		content:	''
-	},
+	}
 	
 });
 
@@ -137,12 +215,80 @@ var PageView = Backbone.View.extend({
 	
 });
 
+
+/* USER */
+
+var User = Backbone.Model.extend({
+	
+	urlRoot: '/user',
+	
+	defaults: {
+		name_first:		'',
+		name_last:		'',
+		email:			''
+	}
+	
+});
+
+var UserView = Backbone.View.extend({
+	
+	className: "userView",
+	id:			"user-view",
+	
+	events: {
+		'submit .UserViewForm': 'saveUser'	
+	},
+	
+	initialize: function(){
+	
+		this.listenTo(this.model, "change", this.render);
+	
+	},
+	
+	template: _.template($('#userView_template').html()),
+	
+	render: function(){
+		
+		var attributes = this.model.toJSON();
+		this.$el.html(this.template(attributes));
+		
+		return this;
+		
+	},
+	
+	saveUser: function(){
+		
+		var $save_btn = this.$el.children('.UserViewForm button[type=submit]');
+		
+		var user_data = $(this.$el.children('form')).serializeObject();
+		
+		var that = this;
+		
+		this.model.save(user_data, {
+			success: function () {
+				$('.UserViewForm button').after('<i class="icon-ok successMark" style="display: none; margin-left: 14px;"></i>');
+				$('.UserViewForm .successMark').fadeIn(200).delay(2000).fadeOut(200, function(){
+					$('.UserViewForm .successMark').remove();
+				});
+			}
+        });
+		
+        return false;
+	
+	}
+	
+});
+
+
+/* ROUTER */
+
 var AppRouter = Backbone.Router.extend({
 	
 	routes: {
 		
 		"" : "index",
-		"page/:id" : "showPage"
+		"page/:id" : "showPage",
+		"account" : "showAccount"
 		
 	},
 	
@@ -182,6 +328,18 @@ var AppRouter = Backbone.Router.extend({
 		this.page.set('id', id);
 		this.page.fetch();
 	
+	},
+	
+	showAccount: function(){
+		
+		if (!this.user)
+			this.user = new User();
+			
+		this.user.fetch();
+			
+		this.userView = new UserView({model: this.user});
+		$('#guts').html(this.userView.el);
+	
 	}
 	
 });
@@ -189,9 +347,13 @@ var AppRouter = Backbone.Router.extend({
 
 $(function() {
 	
-	var router = new AppRouter();
+	var app = app || {};
 	
-	router.start();
+	window.app = app;
+	
+	window.app.router = new AppRouter();
+	
+	window.app.router.start();
 
 });
 
