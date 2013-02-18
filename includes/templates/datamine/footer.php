@@ -143,6 +143,67 @@ if (typeof jQuery == 'undefined')
 
 </script>
 
+<script type="text/template" id="projectView_template">
+
+	<div class="carousel slide full-page-carousel project-carousel">
+		<!-- Carousel items -->
+		<div class="carousel-inner">
+			<div class="active item">
+				<img src="<%= header_img %>" alt="">
+				<div class="container">
+				<div class="carousel-caption">
+					<h1><%= title %></h1>
+					<p class="lead"><%= short_desc %></p>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="page">
+		<div class="tile-container tile-nav-right">
+			<div class="tile btn btn-primary" data-href="contribute">
+				<div class="tile-content">contribute</div>
+			</div>
+		</div>
+		<div class="tile-container tile-nav">
+			<div class="tile btn btn-info active" data-href="overview">
+				<div class="tile-content">overview</div>
+			</div>
+			<div class="tile btn btn-success" data-href="data">
+				<div class="tile-content">data</div>
+			</div>
+			<div class="tile btn btn-warning" data-href="info">
+				<div class="tile-content">more info</div>
+			</div>
+		</div>
+		<div class="tab-container">
+			<div id="tab-overview" class="tab-content active">
+				<%= desc %>
+			</div>
+			<div id="tab-contribute" class="tab-content">
+				<div class="page-header">
+					<h2>Contribute</h2>
+				</div>
+				<%= desc %>
+			</div>
+			<div id="tab-data" class="tab-content">
+				<div class="page-header">
+					<h2>Data</h2>
+				</div>
+				<%= desc %>
+			</div>
+			<div id="tab-info" class="tab-content">
+				<div class="page-header">
+					<h2>More Info</h2>
+				</div>
+				<%= desc %>
+			</div>
+		</div>
+	</div>
+
+</script>
+
 <script type="text/javascript">
 
 $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
@@ -225,7 +286,8 @@ var User = Backbone.Model.extend({
 	defaults: {
 		name_first:		'',
 		name_last:		'',
-		email:			''
+		email:			'',
+		header_img:		''
 	}
 	
 });
@@ -236,7 +298,7 @@ var UserView = Backbone.View.extend({
 	id:			"user-view",
 	
 	events: {
-		'submit .UserViewForm': 'saveUser'	
+		'submit .UserViewForm': 'saveUser'
 	},
 	
 	initialize: function(){
@@ -280,29 +342,75 @@ var UserView = Backbone.View.extend({
 });
 
 
+/* PROJECT */
+
+var Project = Backbone.Model.extend({
+	
+	urlRoot: '/project'
+	
+});
+
+var ProjectView = Backbone.View.extend({
+	
+	className: 'projectView',
+	id: 'project-view',
+	
+	events: {
+		"click [data-href=contribute]"	: "changeTab",
+		"click [data-href=overview]"	: "changeTab",
+		"click [data-href=data]"		: "changeTab",
+		"click [data-href=info]"		: "changeTab"
+	},
+	
+	initialize: function(){
+	
+		this.listenTo(this.model, "change", this.render);
+	
+	},
+	
+	template: _.template($('#projectView_template').html()),
+	
+	render: function(){
+		
+		var attributes = this.model.toJSON();
+		this.$el.html(this.template(attributes));
+		
+		return this;
+		
+	},
+	
+	changeTab: function(e){
+		
+		var $e = $(e.currentTarget);
+		
+		console.log($e.attr('data-href'));
+		
+		/* Update navigation */
+		this.$el.find('.tile-nav .tile.active').removeClass('active');
+		$e.addClass('active');
+		
+		/* Update content */
+		this.$el.find('.tab-content').hide();
+		this.$el.find('#tab-' + $e.attr('data-href')).show();
+	
+	},
+	
+});
+
+
 /* ROUTER */
 
 var AppRouter = Backbone.Router.extend({
 	
 	routes: {
 		
-		"" : "index",
-		"page/:id" : "showPage",
-		"account" : "showAccount"
+		""				: "index",
+		"page/:id"		: "showPage",
+		"account"		: "showAccount",
+		"projects"		: "projectIndex",
+		"project/:id"	: "showProject"
 		
 	},
-	
-	init: function(){
-	
-		this.is_init = true;
-		
-		this.page = new Page();
-		this.pageView = new PageView({model: this.page});
-		$('#guts').html(this.pageView.el);
-	
-	},
-	
-	is_init: false,
 	
 	start: function(){
 
@@ -319,14 +427,20 @@ var AppRouter = Backbone.Router.extend({
 	
 	showPage: function(id){
 
-		if (!this.is_init)
-			this.init();
+		if (!this.page)
+			this.page = new Page();
+		if (!this.paveView)
+			this.pageView = new PageView({model: this.page});
 
 		this.page.on("request", loading_notice('show'));
 		this.page.on("sync", loading_notice('hide'));
 
 		this.page.set('id', id);
 		this.page.fetch();
+		
+		var that = this;
+		
+		this.page.on("sync", function() {$('#guts').html(that.pageView.el)});
 	
 	},
 	
@@ -334,13 +448,37 @@ var AppRouter = Backbone.Router.extend({
 		
 		if (!this.user)
 			this.user = new User();
-			
+		
+		if (!this.userView)
+			this.userView = new UserView({model: this.user});
+		
 		this.user.fetch();
+	
+	},
+
+	projectIndex: function(){
+		
+		this.showPage('projects');
+	
+	},
+	
+	showProject: function(id){
+		
+		this.project = new Project();
 			
-		this.userView = new UserView({model: this.user});
-		$('#guts').html(this.userView.el);
+		this.project.on("request", loading_notice('show'));
+		this.project.on("sync", loading_notice('hide'));
+
+		this.project.set('id', id);
+		
+		this.project.fetch();
+		
+		this.projectView = new ProjectView({model: this.project});
+		
+		$('#guts').html(this.projectView.el);
 	
 	}
+
 	
 });
 

@@ -29,6 +29,55 @@
 
 .textarea {max-width:420px; max-height:600px;overflow: auto;}
 
+/* TILES */
+
+.tile {
+	position: relative;
+	width: 150px;
+	height: 150px;
+	margin: 5px;
+	padding: 0;
+	float: left;
+}
+
+.tile .tile-content {
+	position: absolute;
+	bottom: 9px;
+	left: 12px;
+}
+
+.tile.active .tile-content {
+	font-size: 145%;
+	bottom: 16px;
+	left: 14px;
+}
+
+.tile-nav, .tile-nav-left {
+	float: left;
+	margin-right: 30px;
+	width: 150px;
+}
+
+.tile-nav-right {
+	float: right;
+	margin-left: 30px;
+	margin-bottom: 25px;
+	width: 150px;
+}
+
+.tile-nav .tile {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+/* TABS */
+.tab-content {
+	display: none;
+}
+.tab-content.active {
+	display: block;
+}
+
 /* ACCORDIONS */
 .accordion.ow_accordion {
 	clear: both;
@@ -474,8 +523,8 @@ table.users-admin td {padding: 11px 11px;}
 
 /* CAROUSEL MODS */
 
-/* Carousel base class */
-#fullPageCarousel {
+/* Full Page Carousel */
+.full-page-carousel {
 	margin-top: -20px;
 	margin-bottom: 30px;
 	font-size: 18px;
@@ -483,12 +532,12 @@ table.users-admin td {padding: 11px 11px;}
 	line-height: 30px;
 }
 
-#fullPageCarousel .container {
+.full-page-carousel .container {
   position: relative;
   z-index: 9;
 }
 
-#fullPageCarousel .carousel-control {
+.full-page-carousel .carousel-control {
   height: 80px;
   margin-top: 0;
   text-shadow: 0 1px 1px rgba(0,0,0,.4);
@@ -496,10 +545,10 @@ table.users-admin td {padding: 11px 11px;}
   border: 0;
 }
 
-#fullPageCarousel .item {
+.full-page-carousel .item {
   height: 500px;
 }
-#fullPageCarousel img {
+.full-page-carousel img {
   position: absolute;
   top: 0;
   left: 0;
@@ -507,30 +556,55 @@ table.users-admin td {padding: 11px 11px;}
   height: 500px;
 }
 
-#fullPageCarousel .carousel-caption {
+.full-page-carousel .carousel-caption {
   background-color: transparent;
   position: static;
   padding: 0 20px;
-  margin-top: 110px;
+  margin-top: 235px;
 }
-#fullPageCarousel .carousel-caption p {
+.full-page-carousel .carousel-caption p {
     line-height: inherit;
 }
-#fullPageCarousel .carousel-caption h1,
-#fullPageCarousel .carousel-caption h3,
-#fullPageCarousel .carousel-caption p {
+.full-page-carousel .carousel-caption h1,
+.full-page-carousel .carousel-caption h3,
+.full-page-carousel .carousel-caption p {
   color: #fff;
-  text-shadow: 0px 2px 7px rgba(0,0,0,.4);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-shadow: 0px 2px 7px rgba(0,0,0,.5);
 }
-#fullPageCarousel .carousel-caption h1 {
+.full-page-carousel .carousel-caption h1 {
     margin-bottom: 0;
 	font-size: 60px;
 	line-height: 1;
 	color: #fff;
 	letter-spacing: -1px;
+	font-weight: bold;
 }
-#fullPageCarousel .carousel-caption .btn {
+.full-page-carousel .carousel-caption .btn {
   margin-top: 18px;
+}
+
+
+/* Project Carousel */
+
+.project-carousel .carousel-caption {
+	margin-top: 150px;
+}
+
+.project-carousel .carousel-caption h1 {
+	font-size: 130px;
+	opacity: .9;
+	text-shadow: -2px -2px 0 rgba(0,0,0,.45),
+    2px -2px 0 rgba(0,0,0,.45),
+    -2px 2px 0 rgba(0,0,0,.45),
+    2px 2px 0 rgba(0,0,0,.45);
+}
+
+.project-carousel .carousel-caption p {
+	display: block;
+	background: rgba(0,0,0,.48);
+	padding: 6px 11px;
+	margin-top: 4px;
 }
 
 /* LOADER NOTICES */
