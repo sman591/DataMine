@@ -18,4 +18,6 @@ require_once 'classes/bootstrap/alerts.php';
 
 require_once 'classes/jquery_file/form.php';
 
+require_once 'classes/datamine/project.php';
+
 ?>
