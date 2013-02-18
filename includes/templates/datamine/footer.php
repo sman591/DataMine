@@ -182,24 +182,28 @@ if (typeof jQuery == 'undefined')
 				<div class="page-header">
 					<h1>Overview</h1>
 				</div>
+				<div class="alert alert-success">This serves as a general "front cover" to the project. What it is, why it's important, what the data represents, how it can be used, etc. Should include graphics/graphs to make the project attractive to visitors.</div>
 				<%= content %>
 			</div>
 			<div id="tab-contribute" class="tab-content">
 				<div class="page-header">
 					<h1>Contribute</h1>
 				</div>
+				<div class="alert alert-success">Form to add on your own data</div>
 				<%= contribute_content %>
 			</div>
 			<div id="tab-data" class="tab-content">
 				<div class="page-header">
 					<h1>Data</h1>
 				</div>
+				<div class="alert alert-success">Data tables (and graphs?) go here with their descriptions</div>
 				<%= data_content %>
 			</div>
 			<div id="tab-info" class="tab-content">
 				<div class="page-header">
 					<h1>More Info</h1>
 				</div>
+				<div class="alert alert-success">Author of project can add whatever write here. Embed graphs, give an entire background to their project, whatever.</div>
 				<%= info_content %>
 			</div>
 		</div>
