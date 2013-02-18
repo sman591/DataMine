@@ -273,11 +273,14 @@ function return_project($id = null) {
 	}
 	
 	$output = array(
-		'id'			=> $project->details('id'),
-		'title'			=> $project->details('title'),
-		'desc'			=> $project->details('desc'),
-		'short_desc'	=> $project->details('short_desc'),
-		'header_img'	=> $project->details('header_img')
+		'id'					=> $project->details('id'),
+		'title'					=> $project->details('title'),
+		'short_desc'			=> $project->details('short_desc'),
+		'header_img'			=> $project->details('header_img'),
+		'content'				=> $project->details('content'),
+		'contribute_content'	=> $project->details('contribute_content'),
+		'data_content'			=> $project->details('data_content'),
+		'info_content'			=> $project->details('info_content')
 	);
 	
 	echo json_encode($output);

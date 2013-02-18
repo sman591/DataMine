@@ -161,7 +161,7 @@ if (typeof jQuery == 'undefined')
 	</div>
 	
 	<div class="page">
-		<div class="tile-container tile-nav-right">
+		<div class="tile-container tile-nav tile-nav-right">
 			<div class="tile btn btn-primary" data-href="contribute">
 				<div class="tile-content">contribute</div>
 			</div>
@@ -179,25 +179,28 @@ if (typeof jQuery == 'undefined')
 		</div>
 		<div class="tab-container">
 			<div id="tab-overview" class="tab-content active">
-				<%= desc %>
+				<div class="page-header">
+					<h1>Overview</h1>
+				</div>
+				<%= content %>
 			</div>
 			<div id="tab-contribute" class="tab-content">
 				<div class="page-header">
-					<h2>Contribute</h2>
+					<h1>Contribute</h1>
 				</div>
-				<%= desc %>
+				<%= contribute_content %>
 			</div>
 			<div id="tab-data" class="tab-content">
 				<div class="page-header">
-					<h2>Data</h2>
+					<h1>Data</h1>
 				</div>
-				<%= desc %>
+				<%= data_content %>
 			</div>
 			<div id="tab-info" class="tab-content">
 				<div class="page-header">
-					<h2>More Info</h2>
+					<h1>More Info</h1>
 				</div>
-				<%= desc %>
+				<%= info_content %>
 			</div>
 		</div>
 	</div>
