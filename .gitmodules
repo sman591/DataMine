@@ -1,0 +1,3 @@
+[submodule "owcms2"]
+	path = owcms2
+	url = git@github.com:sman591/owcms.git
