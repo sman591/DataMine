@@ -293,8 +293,7 @@ var User = Backbone.Model.extend({
 	defaults: {
 		name_first:		'',
 		name_last:		'',
-		email:			'',
-		header_img:		''
+		email:			''
 	}
 	
 });
@@ -320,7 +319,7 @@ var UserView = Backbone.View.extend({
 		
 		var attributes = this.model.toJSON();
 		this.$el.html(this.template(attributes));
-		
+
 		return this;
 		
 	},
@@ -458,6 +457,8 @@ var AppRouter = Backbone.Router.extend({
 		
 		if (!this.userView)
 			this.userView = new UserView({model: this.user});
+		
+		$('#guts').html(this.userView.el);
 		
 		this.user.fetch();
 	
