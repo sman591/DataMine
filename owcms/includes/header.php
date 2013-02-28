@@ -112,7 +112,7 @@ function redirect($url = '', $message = false, $submessage = false) {
 		
 	}
 	
-	header('Location: '.$url, true, 307);
+	header('Location: http://'.DOMAIN.$url, true, 307);
 	exit;
 	
 }
