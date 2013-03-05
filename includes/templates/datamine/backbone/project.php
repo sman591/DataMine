@@ -99,45 +99,56 @@
 			</div>
 		</div>
 		<div class="tab-container">
-			<div id="tab-overview" class="tab-content active">
-				<div class="page-header">
-					<h1>Overview</h1>
-				</div>
-				<form class="row-fluid">
-					<fieldset class="">
+			<form class="row-fluid">
+				<div id="tab-overview" class="tab-content active">
+					<div class="page-header">
+						<h1>Overview</h1>
+					</div>
+					<fieldset>
 					
 						<legend>Project Info</legend>
 						<label for="title">Title</label>
-						<input type="text" name="title" id="title" class="span12" placeholder="My Amazing New Project">
+						<input type="text" name="title" value="<%= title %>" id="title" class="span12" placeholder="My Amazing New Project">
 						
 						<label for="short_desc">Short Description</label>
-						<input type="text" name="short_desc" id="short_desc" style="width: auto" placeholder="This is what my project's about">
+						<textarea name="short_desc" id="short_desc" class="span12" rows="3" placeholder="This is what my project's about" maxlength="250"><%= short_desc %></textarea>
+						
+						<legend>Header Image</legend>
+						<label for="header_img">Image File</label>
+						<div class="well">
+							<input type="file" name="header_img" id="header_img" class="span12">
+						</div>
+						<p>Current image: <a href="<%= header_img %>"><%= header_img %></a></p>
+						<p>&nbsp;</p>
+						<p>Opacity, Drop Shadow Color, Text Color, etc</p>
+						
+						<legend>Overview Content</legend>
+						<textarea name="content" id="content" class="span12" rows="15" placeholder="Content for the overview (default) tab"><%= content %></textarea>
 					
 					</fieldset>
-				</form>
-				<%= content %>
-			</div>
-			<div id="tab-contribute" class="tab-content">
-				<div class="page-header">
-					<h1>Contribute</h1>
 				</div>
-				<div class="alert alert-success">Form to add on your own data</div>
-				<%= contribute_content %>
-			</div>
-			<div id="tab-data" class="tab-content">
-				<div class="page-header">
-					<h1>Data</h1>
+				<div id="tab-contribute" class="tab-content">
+					<div class="page-header">
+						<h1>Contribute</h1>
+					</div>
+					<div class="alert alert-success">Form to add on your own data</div>
+					<%= contribute_content %>
 				</div>
-				<div class="alert alert-success">Data tables (and graphs?) go here with their descriptions</div>
-				<%= data_content %>
-			</div>
-			<div id="tab-info" class="tab-content">
-				<div class="page-header">
-					<h1>More Info</h1>
+				<div id="tab-data" class="tab-content">
+					<div class="page-header">
+						<h1>Data</h1>
+					</div>
+					<div class="alert alert-success">Data tables (and graphs?) go here with their descriptions</div>
+					<%= data_content %>
 				</div>
-				<div class="alert alert-success">Author of project can add whatever write here. Embed graphs, give an entire background to their project, whatever.</div>
-				<%= info_content %>
-			</div>
+				<div id="tab-info" class="tab-content">
+					<div class="page-header">
+						<h1>More Info</h1>
+					</div>
+					<div class="alert alert-success">Author of project can add whatever write here. Embed graphs, give an entire background to their project, whatever.</div>
+					<%= info_content %>
+				</div>
+			</form>
 		</div>
 	</div>
 
