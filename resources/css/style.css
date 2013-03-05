@@ -1,5 +1,5 @@
 /* GRID */
-.row-fluid [class*="span"] {
+.row-fluid > [class*="span"] {
 	min-height: inherit !important; /* Bootstrap Fix */
 }
 .span-header {
