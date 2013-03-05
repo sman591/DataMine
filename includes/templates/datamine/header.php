@@ -18,8 +18,8 @@ echo '<!DOCTYPE html>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="shortcut icon" href="/resources/images/favicon.ico"/>
-		<link rel="stylesheet" href="/resources/bootstrap-2.2.2/css/bootstrap'.$testingMin.'.css" type="text/css" />
-		<link href="/resources/cosmo/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="/resources/bootstrap-2.3.1/css/bootstrap'.$testingMin.'.css" type="text/css" />
+		<link href="/resources/cosmo-2.3.1/css/bootstrap.min.css" rel="stylesheet">
 		<style type="text/css">
 	      body {
 	        padding-bottom: 15px;
@@ -28,7 +28,7 @@ echo '<!DOCTYPE html>
 	        padding: 9px 0;
 	      }
 	    </style>
-		<link rel="stylesheet" href="/resources/bootstrap-2.2.2/css/bootstrap-responsive'.$testingMin.'.css" type="text/css" />
+		<link rel="stylesheet" href="/resources/bootstrap-2.3.1/css/bootstrap-responsive'.$testingMin.'.css" type="text/css" />
 		<link rel="stylesheet" href="/resources/css/style.css?v=1.1" type="text/css" />
 		<link type="text/css" href="/resources/js/jqueryui/css/sdband/jquery-ui-1.8.16.custom.css" rel="stylesheet" />';
 		
