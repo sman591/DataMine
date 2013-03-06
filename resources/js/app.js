@@ -274,37 +274,48 @@ var AppRouter = Backbone.Router.extend({
 	
 	},
 	
+	init_project: function() {
+
+		window.app.project = new Project();
+			
+		window.app.project.on("request", loading_notice('show'));
+		window.app.project.on("sync", loading_notice('hide'));
+		
+	},
+	
 	showProject: function(id){
 		
-		this.project = new Project();
-			
-		this.project.on("request", loading_notice('show'));
-		this.project.on("sync", loading_notice('hide'));
-
-		this.project.set('id', id);
+		if (!window.app.project)
+			this.init_project();
 		
-		this.project.fetch();
+		if (window.app.project.get('id') !== id)
+			window.app.project.set('id', id);
 		
-		this.projectView = new ProjectView({model: this.project});
+		window.app.project.fetch();
 		
-		$('#guts').html(this.projectView.el);
+		window.app.projectView = new ProjectView({model: window.app.project});
+		
+		$('#guts').html(window.app.projectView.el);
+	
+		window.app.projectView.render();
 	
 	},
 	
 	editProject: function(id){
-		console.log('edit');
-		this.project = new Project();
-			
-		this.project.on("request", loading_notice('show'));
-		this.project.on("sync", loading_notice('hide'));
-
-		this.project.set('id', id);
 		
-		this.project.fetch();
+		if (!window.app.project)
+			this.init_project();
 		
-		this.projectView = new ProjectEditView({model: this.project});
+		if (window.app.project.get('id') !== id)
+			window.app.project.set('id', id);
 		
-		$('#guts').html(this.projectView.el);
+		window.app.project.fetch();
+		
+		window.app.projectEditView = new ProjectEditView({model: window.app.project});
+		
+		$('#guts').html(window.app.projectEditView.el);
+		
+		window.app.projectEditView.render();
 	
 	}
 

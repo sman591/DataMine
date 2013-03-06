@@ -73,12 +73,27 @@
 	
 	<div class="page">
 	
-		<div class="well page-header">
+		<div class="carousel slide full-page-carousel project-carousel">
+			<!-- Carousel items -->
+			<div class="carousel-inner">
+				<div class="active item">
+					<img src="<%= header_img %>" alt="">
+					<div class="container">
+					<div class="carousel-caption">
+						<h1><%= title %></h1>
+						<p class="lead"><%= short_desc %></p>
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		
-			<h1>Edit Project</h1>
+		<div class="alert page-header" style="padding: 20px 20px;margin-bottom: 25px;background: #fe781e">
+		
+			<h1>Editing Project</h1>
 		
 		</div>
-	
+			
 		<div class="tile-container tile-nav tile-nav-right">
 			<div class="tile btn btn-primary" data-href="contribute">
 				<div class="tile-content">contribute</div>
