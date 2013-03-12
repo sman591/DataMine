@@ -88,10 +88,23 @@
 			</div>
 		</div>
 		
-		<div class="alert editing-notice">
-		
-			<i class="icon-white icon-warning-sign"></i>&nbsp;&nbsp;Editing Project</h1>
-		
+		<div class="editing-notice">
+			
+			<div class="container-fluid">
+				<div class="row-fluid">
+					<div class="span12">
+
+						<div class="text pull-left">
+							<p><i class="icon-white icon-warning-sign"></i>&nbsp;&nbsp;Editing Project</i></p>
+						</div>
+						<div class="actions pull-right">
+							<button class="btn btn-primary" onclick="alert('not set yet');">Save</button>
+							<button class="btn btn-inverse" style="margin-left: 10px;" data-href="edit">Done</button>
+						</div>
+
+					</div>
+				</div>
+			</div>
 		</div>
 			
 		<div class="tile-container tile-nav tile-nav-right">

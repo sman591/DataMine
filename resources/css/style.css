@@ -609,8 +609,9 @@ table.users-admin td {padding: 11px 11px;}
 	margin-top: 4px;
 }
 
+/* Editing Notice */
+
 .editing-notice {
-	padding: 20px 20px;
 	margin-bottom: 25px;
 	background: #fe781e;
 	position: fixed;
@@ -620,23 +621,37 @@ table.users-admin td {padding: 11px 11px;}
 	left: 0;
 	z-index: 10;
 	opacity: 0.85;
+	padding: 10px 0;
+	color: #fff;
+}
+
+.editing-notice p {
+	margin: 5px 0 0;
+}
+
+.editing-notice .text {
+	padding-left: 20px;
+}
+
+.editing-notice .actions {
+	padding-right: 20px;
 }
 
 /* LOADER NOTICES */
 #loader-holder {
-background: #ddd;
-position: fixed;
-right: 0;
-bottom: 0;
-padding: 7px 9px;
-font-family: Arial;
-font-size: 14px;
-color: #333;
--webkit-border-top-left-radius: 4px;
--moz-border-radius-topleft: 4px;
-border-top-left-radius: 4px;
-display: none;
-opacity: 0.7;
+	background: #ddd;
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	padding: 7px 9px;
+	font-family: Arial;
+	font-size: 14px;
+	color: #333;
+	-webkit-border-top-left-radius: 4px;
+	-moz-border-radius-topleft: 4px;
+	border-top-left-radius: 4px;
+	display: none;
+	opacity: 0.7;
 }
 #loader-holder .loader {
 	margin: 0 0 0 0;

@@ -19,6 +19,11 @@ $.fn.serializeObject = function() {
 };
 
 
+Backbone.View.prototype.close = function () {
+  this.$el.empty();
+  this.unbind();
+};
+
 /* PAGE */
 
 var Page = Backbone.Model.extend({
@@ -153,7 +158,7 @@ var ProjectView = Backbone.View.extend({
 		"click [data-href=overview]"	: "tabTriggered",
 		"click [data-href=data]"		: "tabTriggered",
 		"click [data-href=info]"		: "tabTriggered",
-		"click [data-href=edit]"		: function() {window.app.router.navigate("//project/" + this.model.get('id') + "/edit/" + this.currentTab)}
+		"click [data-href=edit]"		: function() {window.app.router.navigate("//project/" + this.model.get('id') + "/edit/" + this.currentTab, true)}
 	},
 	
 	initialize: function(){
@@ -169,7 +174,7 @@ var ProjectView = Backbone.View.extend({
 	
 	render: function(){
 		
-		console.log('render');
+		console.log('Project' + (this.edit == true ? "Edit" : "") + 'View Rendered'); // Debugging
 		
 		var attributes = this.model.toJSON();
 		this.$el.html(this.template(attributes));
@@ -184,15 +189,13 @@ var ProjectView = Backbone.View.extend({
 
 		var $e = $(e.currentTarget);
 		
-		window.app.router.navigate("//project/" + this.model.get("id") + "/" + (this.edit == true ? "edit/" : "") + $e.attr('data-href'));
+		window.app.router.navigate("//project/" + this.model.get("id") + "/" + (this.edit == true ? "edit/" : "") + $e.attr('data-href'), true);
 	
 	},
 	
 	changeTab: function(tab){
 		
 		this.currentTab = tab;
-		
-		console.log(this.currentTab);
 		
 		var $e = this.$el.find('[data-href=' + this.currentTab + ']');
 		
@@ -219,7 +222,7 @@ var ProjectEditView = ProjectView.extend({
 		"click [data-href=overview]"	: "tabTriggered",
 		"click [data-href=data]"		: "tabTriggered",
 		"click [data-href=info]"		: "tabTriggered",
-		"click [data-href=edit]"		: function() {window.app.router.navigate("//project/" + this.model.get('id') + "/" + this.currentTab)}
+		"click [data-href=edit]"		: function() {window.app.router.navigate("//project/" + this.model.get('id') + "/" + this.currentTab, true)}
 	},
 	
 	template: _.template($('#projectEditView_template').html())
@@ -230,6 +233,8 @@ var ProjectEditView = ProjectView.extend({
 /* ROUTER */
 
 var AppRouter = Backbone.Router.extend({
+	
+	previousRoute: undefined,
 	
 	routes: {
 		
@@ -242,7 +247,19 @@ var AppRouter = Backbone.Router.extend({
 		
 	},
 	
+	getSegment: function(index) {
+		
+		var segments = Backbone.history.fragment.split('/');
+		return segments[index - 1] || false;
+		
+	},
+	
 	start: function(){
+
+		this.bind("all",function(route, router) {
+		    if (route !== 'route')
+		    	this.previousRoute = route.substr(route.indexOf('route:')+6);
+		});
 
 		Backbone.history.start();
 	
@@ -306,13 +323,14 @@ var AppRouter = Backbone.Router.extend({
 	showProject: function(id, tab){
 		
 		var updateView = function() {
-		
-			window.app.projectView = new ProjectView({model: window.app.project});
-		
-			$('#guts').html(window.app.projectView.el);
+			
+			if (window.app.router.previousRoute !== 'showProject' || window.app.projectView == undefined || window.app.projectView.model.get("id") !== id) {
+				window.app.projectView = new ProjectView({model: window.app.project});
+				$('#guts').html(window.app.projectView.el);
+			}
 			
 			if (tab == undefined)
-				window.app.router.navigate("//project/" + id + "/overview");
+				window.app.router.navigate("//project/" + id + "/overview", true);
 			else
 				window.app.projectView.changeTab(tab);	
 			
@@ -340,12 +358,13 @@ var AppRouter = Backbone.Router.extend({
 		
 		var updateView = function() {
 		
-			window.app.projectEditView = new ProjectEditView({model: window.app.project});
-		
-			$('#guts').html(window.app.projectEditView.el);
+			if (window.app.router.previousRoute !== 'editProject' || window.app.projectEditView == undefined || window.app.projectEditView.model.get("id") !== id) {
+				window.app.projectEditView = new ProjectEditView({model: window.app.project});
+				$('#guts').html(window.app.projectEditView.el);
+			}
 			
 			if (tab == undefined)
-				window.app.router.navigate("//project/" + id + "/overview");
+				window.app.router.navigate("//project/" + id + "/overview", true);
 			else
 				window.app.projectEditView.changeTab(tab);	
 			
