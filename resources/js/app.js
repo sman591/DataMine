@@ -338,23 +338,34 @@ var AppRouter = Backbone.Router.extend({
 	
 	editProject: function(id, tab){
 		
+		var updateView = function() {
+		
+			window.app.projectEditView = new ProjectEditView({model: window.app.project});
+		
+			$('#guts').html(window.app.projectEditView.el);
+			
+			if (tab == undefined)
+				window.app.router.navigate("//project/" + id + "/overview");
+			else
+				window.app.projectEditView.changeTab(tab);	
+			
+		};
+		
 		if (!window.app.project)
 			this.init_project();
-			
+		
 		if (window.app.project.get('id') !== id) {
+			this.init_project();
 			window.app.project.set('id', id);
 			window.app.project.fetch();
-		}
-	
-		window.app.projectEditView = new ProjectEditView({model: window.app.project});
-		
-		$('#guts').html(window.app.projectEditView.el);
-		
+			window.app.project.on("sync", function(){
 
-		if (tab == undefined)
-			window.app.router.navigate("//project/" + id + "/edit/overview");
+				updateView();
+				
+			});
+		}
 		else
-			window.app.projectEditView.changeTab(tab);
+			updateView();
 	
 	}
 
