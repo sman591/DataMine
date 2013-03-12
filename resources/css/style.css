@@ -532,9 +532,10 @@ table.users-admin td {padding: 11px 11px;}
 	line-height: 30px;
 }
 
-.full-page-carousel .container {
+.full-page-carousel .container-fluid {
   position: relative;
   z-index: 9;
+  padding: 0;
 }
 
 .full-page-carousel .carousel-control {
@@ -559,7 +560,7 @@ table.users-admin td {padding: 11px 11px;}
 .full-page-carousel .carousel-caption {
   background-color: transparent;
   position: static;
-  padding: 0 20px;
+  padding: 0 60px;
   margin-top: 235px;
 }
 .full-page-carousel .carousel-caption p {

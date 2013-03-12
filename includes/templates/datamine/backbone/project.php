@@ -5,7 +5,7 @@
 		<div class="carousel-inner">
 			<div class="active item">
 				<img src="<%= header_img %>" alt="">
-				<div class="container">
+				<div class="container-fluid">
 				<div class="carousel-caption">
 					<h1><%= title %></h1>
 					<p class="lead"><%= short_desc %></p>
@@ -78,7 +78,7 @@
 			<div class="carousel-inner">
 				<div class="active item">
 					<img src="<%= header_img %>" alt="">
-					<div class="container">
+					<div class="container-fluid">
 					<div class="carousel-caption">
 						<h1><%= title %></h1>
 						<p class="lead"><%= short_desc %></p>
