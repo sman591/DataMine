@@ -137,7 +137,7 @@ var UserView = Backbone.View.extend({
 
 var Project = Backbone.Model.extend({
 	
-	urlRoot: '/project'
+	urlRoot: '/project',
 	
 });
 
@@ -145,18 +145,23 @@ var ProjectView = Backbone.View.extend({
 	
 	className: 'projectView',
 	id: 'project-view',
+	edit: false,
+	currentTab: '',
 	
 	events: {
-		"click [data-href=contribute]"	: "changeTab",
-		"click [data-href=overview]"	: "changeTab",
-		"click [data-href=data]"		: "changeTab",
-		"click [data-href=info]"		: "changeTab",
-		"click [data-href=edit]"		: function() {window.app.router.navigate("//project/" + this.model.get('id') + "/edit")}
+		"click [data-href=contribute]"	: "tabTriggered",
+		"click [data-href=overview]"	: "tabTriggered",
+		"click [data-href=data]"		: "tabTriggered",
+		"click [data-href=info]"		: "tabTriggered",
+		"click [data-href=edit]"		: function() {window.app.router.navigate("//project/" + this.model.get('id') + "/edit/" + this.currentTab)}
 	},
 	
 	initialize: function(){
 	
-		this.listenTo(this.model, "change", this.render);
+		this.model.on("change", this.render);
+		
+		if (this.model.get('title') !== undefined)
+			this.render();
 	
 	},
 	
@@ -164,18 +169,32 @@ var ProjectView = Backbone.View.extend({
 	
 	render: function(){
 		
+		console.log('render');
+		
 		var attributes = this.model.toJSON();
 		this.$el.html(this.template(attributes));
+		
+		this.changeTab(this.currentTab);
 		
 		return this;
 		
 	},
 	
-	changeTab: function(e){
-		
+	tabTriggered: function(e){
+
 		var $e = $(e.currentTarget);
 		
-		console.log($e.attr('data-href'));
+		window.app.router.navigate("//project/" + this.model.get("id") + "/" + (this.edit == true ? "edit/" : "") + $e.attr('data-href'));
+	
+	},
+	
+	changeTab: function(tab){
+		
+		this.currentTab = tab;
+		
+		console.log(this.currentTab);
+		
+		var $e = this.$el.find('[data-href=' + this.currentTab + ']');
 		
 		/* Update navigation */
 		this.$el.find('.tile-nav .tile.active').removeClass('active');
@@ -183,9 +202,9 @@ var ProjectView = Backbone.View.extend({
 		
 		/* Update content */
 		this.$el.find('.tab-content').hide();
-		this.$el.find('#tab-' + $e.attr('data-href')).show();
+		this.$el.find('#tab-' + this.currentTab).show();
 	
-	},
+	}
 	
 });
 
@@ -193,16 +212,17 @@ var ProjectEditView = ProjectView.extend({
 	
 	className: 'projectEditView',
 	id: 'project-edit-view',
+	edit: true,
 	
 	events: {
-		"click [data-href=contribute]"	: "changeTab",
-		"click [data-href=overview]"	: "changeTab",
-		"click [data-href=data]"		: "changeTab",
-		"click [data-href=info]"		: "changeTab",
-		"click [data-href=edit]"		: function() {window.app.router.navigate("//project/" + this.model.get('id'))}
+		"click [data-href=contribute]"	: "tabTriggered",
+		"click [data-href=overview]"	: "tabTriggered",
+		"click [data-href=data]"		: "tabTriggered",
+		"click [data-href=info]"		: "tabTriggered",
+		"click [data-href=edit]"		: function() {window.app.router.navigate("//project/" + this.model.get('id') + "/" + this.currentTab)}
 	},
 	
-	template: _.template($('#projectEditView_template').html()),
+	template: _.template($('#projectEditView_template').html())
 	
 });
 
@@ -213,12 +233,12 @@ var AppRouter = Backbone.Router.extend({
 	
 	routes: {
 		
-		""				: "index",
-		"page/:id"		: "showPage",
-		"account"		: "showAccount",
-		"projects"		: "projectIndex",
-		"project/:id"	: "showProject",
-		"project/:id/:act"	: "editProject",
+		""							: "index",
+		"page/:id"					: "showPage",
+		"account"					: "showAccount",
+		"projects"					: "projectIndex",
+		"project/:id/edit(/:tab)"	: "editProject",
+		"project/:id(/:tab)"		: "showProject"
 		
 	},
 	
@@ -283,39 +303,58 @@ var AppRouter = Backbone.Router.extend({
 		
 	},
 	
-	showProject: function(id){
+	showProject: function(id, tab){
+		
+		var updateView = function() {
+		
+			window.app.projectView = new ProjectView({model: window.app.project});
+		
+			$('#guts').html(window.app.projectView.el);
+			
+			if (tab == undefined)
+				window.app.router.navigate("//project/" + id + "/overview");
+			else
+				window.app.projectView.changeTab(tab);	
+			
+		};
 		
 		if (!window.app.project)
 			this.init_project();
 		
-		if (window.app.project.get('id') !== id)
+		if (window.app.project.get('id') !== id) {
+			this.init_project();
 			window.app.project.set('id', id);
-		
-		window.app.project.fetch();
-		
-		window.app.projectView = new ProjectView({model: window.app.project});
-		
-		$('#guts').html(window.app.projectView.el);
-	
-		window.app.projectView.render();
+			window.app.project.fetch();
+			window.app.project.on("sync", function(){
+
+				updateView();
+				
+			});
+		}
+		else
+			updateView();
 	
 	},
 	
-	editProject: function(id){
+	editProject: function(id, tab){
 		
 		if (!window.app.project)
 			this.init_project();
-		
-		if (window.app.project.get('id') !== id)
+			
+		if (window.app.project.get('id') !== id) {
 			window.app.project.set('id', id);
-		
-		window.app.project.fetch();
-		
+			window.app.project.fetch();
+		}
+	
 		window.app.projectEditView = new ProjectEditView({model: window.app.project});
 		
 		$('#guts').html(window.app.projectEditView.el);
 		
-		window.app.projectEditView.render();
+
+		if (tab == undefined)
+			window.app.router.navigate("//project/" + id + "/edit/overview");
+		else
+			window.app.projectEditView.changeTab(tab);
 	
 	}
 

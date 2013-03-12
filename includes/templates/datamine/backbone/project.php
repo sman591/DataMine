@@ -25,7 +25,7 @@
 			</div>
 		</div>
 		<div class="tile-container tile-nav">
-			<div class="tile btn btn-info active" data-href="overview">
+			<div class="tile btn btn-info" data-href="overview">
 				<div class="tile-content">overview</div>
 			</div>
 			<div class="tile btn btn-success" data-href="data">
@@ -36,7 +36,7 @@
 			</div>
 		</div>
 		<div class="tab-container">
-			<div id="tab-overview" class="tab-content active">
+			<div id="tab-overview" class="tab-content">
 				<div class="page-header">
 					<h1>Overview</h1>
 				</div>
@@ -88,9 +88,9 @@
 			</div>
 		</div>
 		
-		<div class="alert page-header" style="padding: 20px 20px;margin-bottom: 25px;background: #fe781e">
+		<div class="alert editing-notice">
 		
-			<h1>Editing Project</h1>
+			<i class="icon-white icon-warning-sign"></i>&nbsp;&nbsp;Editing Project</h1>
 		
 		</div>
 			
@@ -103,7 +103,7 @@
 			</div>
 		</div>
 		<div class="tile-container tile-nav">
-			<div class="tile btn btn-info active" data-href="overview">
+			<div class="tile btn btn-info" data-href="overview">
 				<div class="tile-content">overview</div>
 			</div>
 			<div class="tile btn btn-success" data-href="data">
@@ -115,7 +115,7 @@
 		</div>
 		<div class="tab-container">
 			<form class="row-fluid">
-				<div id="tab-overview" class="tab-content active">
+				<div id="tab-overview" class="tab-content">
 					<div class="page-header">
 						<h1>Overview</h1>
 					</div>
@@ -135,10 +135,9 @@
 						</div>
 						<p>Current image: <a href="<%= header_img %>"><%= header_img %></a></p>
 						<p>&nbsp;</p>
-						<p>Opacity, Drop Shadow Color, Text Color, etc</p>
 						
 						<legend>Overview Content</legend>
-						<textarea name="content" id="content" class="span12" rows="15" placeholder="Content for the overview (default) tab"><%= content %></textarea>
+						<textarea name="content" id="content" class="span12 tinymce" rows="15" placeholder="Content for the overview (default) tab"><%= content %></textarea>
 					
 					</fieldset>
 				</div>
@@ -146,22 +145,40 @@
 					<div class="page-header">
 						<h1>Contribute</h1>
 					</div>
-					<div class="alert alert-success">Form to add on your own data</div>
-					<%= contribute_content %>
+					
+					<fieldset>
+					
+						<legend>Contribution Options</legend>
+						<label for="allow_contribute">Public Contributions</label>
+						<select name="allow_contribute">
+							<option value="true">Allow (default)</option>
+							<option value="false">Deny</option>
+						</select>
+						
+						<p>&nbsp;</p>
+					
+						<legend>Contribute Content</legend>
+						<textarea name="content" id="content" class="span12 tinymce" rows="15" placeholder="Content for the overview (default) tab"><%= content %></textarea>
+					
+					</fieldset>
 				</div>
 				<div id="tab-data" class="tab-content">
 					<div class="page-header">
 						<h1>Data</h1>
 					</div>
-					<div class="alert alert-success">Data tables (and graphs?) go here with their descriptions</div>
-					<%= data_content %>
+					<div class="alert alert-success">Options to edit data go here</div>
 				</div>
 				<div id="tab-info" class="tab-content">
 					<div class="page-header">
 						<h1>More Info</h1>
 					</div>
-					<div class="alert alert-success">Author of project can add whatever write here. Embed graphs, give an entire background to their project, whatever.</div>
-					<%= info_content %>
+					
+					<fieldset>
+					
+						<legend>Content</legend>
+						<textarea name="content" id="moreinfo_content" class="span12 tinymce" rows="25" placeholder="Content for the overview (default) tab"><%= info_content %></textarea>
+					
+					</fieldset>
 				</div>
 			</form>
 		</div>

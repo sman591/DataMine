@@ -607,6 +607,19 @@ table.users-admin td {padding: 11px 11px;}
 	margin-top: 4px;
 }
 
+.editing-notice {
+	padding: 20px 20px;
+	margin-bottom: 25px;
+	background: #fe781e;
+	position: fixed;
+	bottom: 0;
+	margin: 0;
+	width: 100%;
+	left: 0;
+	z-index: 10;
+	opacity: 0.85;
+}
+
 /* LOADER NOTICES */
 #loader-holder {
 background: #ddd;
