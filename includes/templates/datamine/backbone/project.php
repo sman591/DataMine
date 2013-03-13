@@ -141,6 +141,8 @@
 						<label for="short_desc">Short Description</label>
 						<textarea name="short_desc" id="short_desc" class="span12 mceEditor-simple" rows="3" placeholder="This is what my project's about" maxlength="250"><%= short_desc %></textarea>
 						
+						<p>&nbsp;</p>
+						
 						<legend>Header Image</legend>
 						<label for="header_img">Image File</label>
 						<div class="well">
