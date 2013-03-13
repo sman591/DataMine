@@ -171,7 +171,7 @@
 						<p>&nbsp;</p>
 					
 						<legend>Contribute Content</legend>
-						<textarea name="contribute_content" id="contribute_content" class="span12 tinymce" rows="15" placeholder="Content for the overview (default) tab"><%= content %></textarea>
+						<textarea name="contribute_content" id="contribute_content" class="span12 tinymce" rows="15" placeholder="Content for the overview (default) tab"><%= contribute_content %></textarea>
 					
 					</fieldset>
 				</div>
