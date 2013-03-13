@@ -781,3 +781,39 @@ function bootstrap_toggle_notice() {
 	});
 
 }
+
+function tinymce_init() {
+	
+	tinyMCE.init({
+	        theme : "advanced",
+	        mode : "specific_textareas",
+	        editor_selector : "mceEditor",
+	        content_css : "/resources/bootstrap-2.3.1/css/bootstrap.min.css,/resources/cosmo-2.3.1/css/bootstrap.min.css,/resources/css/style.css",
+	        plugins : "fullscreen, codemagic",
+	        theme_advanced_buttons3_add : "fullscreen, codemagic",
+	        fullscreen_new_window : true,
+	        fullscreen_settings : {
+	                theme_advanced_path_location : "top"
+	        }
+	});
+	
+	tinyMCE.init({
+	        theme : "simple",
+	        mode : "specific_textareas",
+	        editor_selector : "mceEditor-simple",
+	        content_css : "/resources/bootstrap-2.3.1/css/bootstrap.min.css,/resources/cosmo-2.3.1/css/bootstrap.min.css,/resources/css/style.css",
+	        plugins : "fullscreen, codemagic",
+	        theme_advanced_buttons3_add : "fullscreen, codemagic",
+	        fullscreen_new_window : true,
+	        fullscreen_settings : {
+	                theme_advanced_path_location : "top"
+	        }
+	});
+	
+}
+
+function pageLoad() {
+	
+	tinymce_init();
+	
+}

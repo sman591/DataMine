@@ -109,7 +109,7 @@ var UserView = Backbone.View.extend({
 		
 		var attributes = this.model.toJSON();
 		this.$el.html(this.template(attributes));
-
+		
 		return this;
 		
 	},
@@ -291,6 +291,8 @@ var AppRouter = Backbone.Router.extend({
 		});
 
 		Backbone.history.start();
+		
+		this.previousRoute = 'editProject';
 	
 	},
 	
