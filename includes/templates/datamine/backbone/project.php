@@ -99,7 +99,16 @@
 						</div>
 						<div class="actions pull-right">
 							<button class="btn btn-primary" data-href="save">Save</button>
-							<button class="btn btn-inverse" style="margin-left: 10px;" data-href="edit">Done</button>
+							<div class="btn-group dropup">
+								<button class="btn btn-inverse" style="margin-left: 10px;" data-href="done">Save & Exit</button>
+								<button class="btn dropdown-toggle" data-toggle="dropdown">
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li><a data-href="edit">Exit without saving</a></li>
+								</ul>
+							</div>
+						
 						</div>
 
 					</div>
@@ -111,8 +120,8 @@
 			<div class="tile btn btn-primary" data-href="contribute">
 				<div class="tile-content">contribute</div>
 			</div>
-			<div class="tile btn btn-inverse" data-href="edit">
-				<div class="tile-content">done editing</div>
+			<div class="tile btn btn-inverse" data-href="done">
+				<div class="tile-content">save & exit</div>
 			</div>
 		</div>
 		<div class="tile-container tile-nav">
@@ -139,7 +148,7 @@
 						<input type="text" name="title" value="<%= title %>" id="title" class="span12" placeholder="My Amazing New Project">
 						
 						<label for="short_desc">Short Description</label>
-						<textarea name="short_desc" id="short_desc" class="span12 mceEditor-simple" rows="3" placeholder="This is what my project's about" maxlength="250"><%= short_desc %></textarea>
+						<textarea name="short_desc" id="short_desc" class="span12" rows="3" placeholder="This is what my project's about" maxlength="250"><%= short_desc %></textarea>
 						
 						<p>&nbsp;</p>
 						
@@ -152,7 +161,7 @@
 						<p>&nbsp;</p>
 						
 						<legend>Overview Content</legend>
-						<textarea name="content" id="content" class="span12 mceEditor" rows="15" placeholder="Content for the overview (default) tab"><%= content %></textarea>
+						<textarea name="content" id="content" class="span12 mceEditor" style="height: 400px;" placeholder="Content for the overview (default) tab"><%= content %></textarea>
 					
 					</fieldset>
 				</div>
@@ -173,7 +182,7 @@
 						<p>&nbsp;</p>
 					
 						<legend>Contribute Content</legend>
-						<textarea name="contribute_content" id="contribute_content" class="span12 mceEditor" rows="15" placeholder="Content for the contribute tab"><%= contribute_content %></textarea>
+						<textarea name="contribute_content" id="contribute_content" class="span12 mceEditor" style="height: 400px;" placeholder="Content for the contribute tab"><%= contribute_content %></textarea>
 					
 					</fieldset>
 				</div>
@@ -183,7 +192,7 @@
 					</div>
 					
 					<legend>Data Content</legend>
-					<textarea name="data_content" id="data_content" class="span12 mceEditor" rows="15" placeholder="Content for the data tab"><%= data_content %></textarea>
+					<textarea name="data_content" id="data_content" class="span12 mceEditor" style="height: 400px;" placeholder="Content for the data tab"><%= data_content %></textarea>
 					
 					<p>&nbsp;</p>
 						
@@ -197,7 +206,7 @@
 					<fieldset>
 					
 						<legend>Content</legend>
-						<textarea name="info_content" id="info_content" class="span12 mceEditor" rows="25" placeholder="Content for the more info tab"><%= info_content %></textarea>
+						<textarea name="info_content" id="info_content" class="span12 mceEditor" style="height: 400px;" placeholder="Content for the more info tab"><%= info_content %></textarea>
 					
 					</fieldset>
 				</div>

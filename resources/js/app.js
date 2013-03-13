@@ -158,8 +158,7 @@ var ProjectView = Backbone.View.extend({
 		"click [data-href=overview]"	: "tabTriggered",
 		"click [data-href=data]"		: "tabTriggered",
 		"click [data-href=info]"		: "tabTriggered",
-		"click [data-href=save]"		: "saveProject",
-		"click [data-href=edit]"		: function() {window.app.router.navigate("//project/" + this.model.get('id') + "/edit/" + this.currentTab, true)}
+		"click [data-href=edit]"		: "toggleEdit"
 	},
 	
 	initialize: function(){
@@ -212,9 +211,43 @@ if (this.model.get('title') !== undefined)
 	
 	},
 	
+	toggleEdit: function() {
+		
+		window.app.router.navigate("//project/" + this.model.get('id') + "/" + (this.edit == false ? "edit/" : "") + this.currentTab, true);
+		
+	}
+	
+});
+
+var ProjectEditView = ProjectView.extend({
+	
+	className: 'projectEditView',
+	id: 'project-edit-view',
+	edit: true,
+	
+	events: {
+		"click [data-href=contribute]"	: "tabTriggered",
+		"click [data-href=overview]"	: "tabTriggered",
+		"click [data-href=data]"		: "tabTriggered",
+		"click [data-href=info]"		: "tabTriggered",
+		"click [data-href=done]"		: "doneProject",
+		"click [data-href=save]"		: "saveProject",
+		"submit form"					: "saveProject",
+		"click [data-href=edit]"		: "toggleEdit"
+	},
+	
+	template: _.template($('#projectEditView_template').html()),
+	
+	doneProject: function(){
+		
+		this.saveProject();
+		
+		this.toggleEdit();
+		
+	},
+	
 	saveProject: function(){
 		
-		var $save_btn = this.$el.children('[data-href=save]');
 		
 		var data = $(this.$el.find('form')).serializeObject();
 		
@@ -236,25 +269,6 @@ if (this.model.get('title') !== undefined)
         return false;
 	
 	}
-	
-});
-
-var ProjectEditView = ProjectView.extend({
-	
-	className: 'projectEditView',
-	id: 'project-edit-view',
-	edit: true,
-	
-	events: {
-		"click [data-href=contribute]"	: "tabTriggered",
-		"click [data-href=overview]"	: "tabTriggered",
-		"click [data-href=data]"		: "tabTriggered",
-		"click [data-href=info]"		: "tabTriggered",
-		"click [data-href=save]"		: "saveProject",
-		"click [data-href=edit]"		: function() {window.app.router.navigate("//project/" + this.model.get('id') + "/" + this.currentTab, true)}
-	},
-	
-	template: _.template($('#projectEditView_template').html())
 	
 });
 
@@ -354,7 +368,7 @@ var AppRouter = Backbone.Router.extend({
 	showProject: function(id, tab){
 		
 		if (tab == undefined) {
-			this.navigate("//project/" + id + "/overview", {trigger: true});
+			this.navigate("//project/" + id + "/overview", true);
 			return false;
 		}
 		
@@ -380,7 +394,7 @@ var AppRouter = Backbone.Router.extend({
 	editProject: function(id, tab){
 		
 		if (tab == undefined) {
-			this.navigate("//project/" + id + "/edit/overview", {trigger: true});
+			this.navigate("//project/" + id + "/edit/overview", true);
 			return false;
 		}
 		
