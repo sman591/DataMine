@@ -613,15 +613,15 @@ table.users-admin td {padding: 11px 11px;}
 
 .editing-notice {
 	margin-bottom: 25px;
-	background: #fe781e;
+	background: rgba(255,121,31,0.8);
+	border-top: 3px solid rgba(255,121,31,0.9);
 	position: fixed;
 	bottom: 0;
 	margin: 0;
 	width: 100%;
 	left: 0;
 	z-index: 10;
-	opacity: 0.85;
-	padding: 10px 0;
+	padding: 12px 0 10px;
 	color: #fff;
 }
 
