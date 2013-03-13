@@ -171,7 +171,7 @@
 						<p>&nbsp;</p>
 					
 						<legend>Contribute Content</legend>
-						<textarea name="contribute_content" id="contribute_content" class="span12 tinymce" rows="15" placeholder="Content for the overview (default) tab"><%= contribute_content %></textarea>
+						<textarea name="contribute_content" id="contribute_content" class="span12 tinymce" rows="15" placeholder="Content for the contribute tab"><%= contribute_content %></textarea>
 					
 					</fieldset>
 				</div>
@@ -179,6 +179,10 @@
 					<div class="page-header">
 						<h1>Data</h1>
 					</div>
+					
+					<legend>Data Content</legend>
+					<textarea name="data_content" id="data_content" class="span12 tinymce" rows="15" placeholder="Content for the data tab"><%= data_content %></textarea>
+					
 					<div class="alert alert-success">Options to edit data go here</div>
 				</div>
 				<div id="tab-info" class="tab-content">
@@ -189,7 +193,7 @@
 					<fieldset>
 					
 						<legend>Content</legend>
-						<textarea name="info_content" id="info_content" class="span12 tinymce" rows="25" placeholder="Content for the overview (default) tab"><%= info_content %></textarea>
+						<textarea name="info_content" id="info_content" class="span12 tinymce" rows="25" placeholder="Content for the more info tab"><%= info_content %></textarea>
 					
 					</fieldset>
 				</div>
