@@ -163,10 +163,12 @@ var ProjectView = Backbone.View.extend({
 	
 	initialize: function(){
 	
-		this.model.on("change", this.render);
+		this.model.on("change", this.render, this);
 		
-		if (this.model.get('title') !== undefined)
+		/*
+if (this.model.get('title') !== undefined)
 			this.render();
+*/
 	
 	},
 	
@@ -311,80 +313,64 @@ var AppRouter = Backbone.Router.extend({
 	
 	},
 	
-	init_project: function() {
+	init_project: function(id) {
 
-		window.app.project = new Project();
+		this.project = new Project({id: id});
 			
-		window.app.project.on("request", loading_notice('show'));
-		window.app.project.on("sync", loading_notice('hide'));
+		this.project.on("request", loading_notice('show'));
+		this.project.on("sync", loading_notice('hide'));
 		
 	},
 	
 	showProject: function(id, tab){
 		
-		var updateView = function() {
-			
-			if (window.app.router.previousRoute !== 'showProject' || window.app.projectView == undefined || window.app.projectView.model.get("id") !== id) {
-				window.app.projectView = new ProjectView({model: window.app.project});
-				$('#guts').html(window.app.projectView.el);
-			}
-			
-			if (tab == undefined)
-				window.app.router.navigate("//project/" + id + "/overview", true);
-			else
-				window.app.projectView.changeTab(tab);	
-			
-		};
-		
-		if (!window.app.project)
-			this.init_project();
-		
-		if (window.app.project.get('id') !== id) {
-			this.init_project();
-			window.app.project.set('id', id);
-			window.app.project.fetch();
-			window.app.project.on("sync", function(){
-
-				updateView();
-				
-			});
+		if (tab == undefined) {
+			this.navigate("//project/" + id + "/overview", {trigger: true});
+			return false;
 		}
-		else
-			updateView();
+		
+		if (!this.project || this.project.get('id') !== id)
+			this.init_project(id);
+		
+		if (this.projectView == undefined || this.previousRoute !== 'showProject' || this.projectView.model.get("id") !== id) {
+			this.projectView = new ProjectView({model: this.project});
+			$('#guts').html(this.projectView.el);
+			this.projectView.currentTab = tab;
+		}
+		else {
+			this.projectView.changeTab(tab);
+		}
+		
+		this.project.fetch();
+		
+		if (this.previousRoute !== 'showProject')
+			this.projectView.render();
 	
 	},
 	
 	editProject: function(id, tab){
 		
-		var updateView = function() {
-		
-			if (window.app.router.previousRoute !== 'editProject' || window.app.projectEditView == undefined || window.app.projectEditView.model.get("id") !== id) {
-				window.app.projectEditView = new ProjectEditView({model: window.app.project});
-				$('#guts').html(window.app.projectEditView.el);
-			}
-			
-			if (tab == undefined)
-				window.app.router.navigate("//project/" + id + "/overview", true);
-			else
-				window.app.projectEditView.changeTab(tab);	
-			
-		};
-		
-		if (!window.app.project)
-			this.init_project();
-		
-		if (window.app.project.get('id') !== id) {
-			this.init_project();
-			window.app.project.set('id', id);
-			window.app.project.fetch();
-			window.app.project.on("sync", function(){
-
-				updateView();
-				
-			});
+		if (tab == undefined) {
+			this.navigate("//project/" + id + "/edit/overview", {trigger: true});
+			return false;
 		}
-		else
-			updateView();
+		
+		if (!this.project || this.project.get('id') !== id)
+			this.init_project(id);
+		
+		if (this.projectEditView == undefined || this.previousRoute !== 'editProject' || this.projectEditView.model.get("id") !== id) {
+			this.projectEditView = new ProjectEditView({model: this.project});
+			$('#guts').html(this.projectEditView.el);
+			this.projectEditView.currentTab = tab;
+		}
+		else {
+			this.projectEditView.changeTab(tab);
+		}
+		
+		this.project.fetch();
+		
+		if (this.previousRoute !== 'editProject')
+			this.projectEditView.render();
 	
 	}
 
