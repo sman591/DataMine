@@ -98,7 +98,7 @@
 							<p><i class="icon-white icon-warning-sign"></i>&nbsp;&nbsp;Editing Project</i></p>
 						</div>
 						<div class="actions pull-right">
-							<button class="btn btn-primary" onclick="alert('not set yet');">Save</button>
+							<button class="btn btn-primary" data-href="save">Save</button>
 							<button class="btn btn-inverse" style="margin-left: 10px;" data-href="edit">Done</button>
 						</div>
 
@@ -171,7 +171,7 @@
 						<p>&nbsp;</p>
 					
 						<legend>Contribute Content</legend>
-						<textarea name="content" id="content" class="span12 tinymce" rows="15" placeholder="Content for the overview (default) tab"><%= content %></textarea>
+						<textarea name="contribute_content" id="contribute_content" class="span12 tinymce" rows="15" placeholder="Content for the overview (default) tab"><%= content %></textarea>
 					
 					</fieldset>
 				</div>
@@ -189,7 +189,7 @@
 					<fieldset>
 					
 						<legend>Content</legend>
-						<textarea name="content" id="moreinfo_content" class="span12 tinymce" rows="25" placeholder="Content for the overview (default) tab"><%= info_content %></textarea>
+						<textarea name="info_content" id="info_content" class="span12 tinymce" rows="25" placeholder="Content for the overview (default) tab"><%= info_content %></textarea>
 					
 					</fieldset>
 				</div>

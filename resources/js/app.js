@@ -158,6 +158,7 @@ var ProjectView = Backbone.View.extend({
 		"click [data-href=overview]"	: "tabTriggered",
 		"click [data-href=data]"		: "tabTriggered",
 		"click [data-href=info]"		: "tabTriggered",
+		"click [data-href=save]"		: "saveProject",
 		"click [data-href=edit]"		: function() {window.app.router.navigate("//project/" + this.model.get('id') + "/edit/" + this.currentTab, true)}
 	},
 	
@@ -209,6 +210,31 @@ if (this.model.get('title') !== undefined)
 		this.$el.find('.tab-content').hide();
 		this.$el.find('#tab-' + this.currentTab).show();
 	
+	},
+	
+	saveProject: function(){
+		
+		var $save_btn = this.$el.children('[data-href=save]');
+		
+		var data = $(this.$el.find('form')).serializeObject();
+		
+		data.id = this.model.get('id');
+		
+		console.log(data);
+		
+		var that = this;
+		
+		this.model.save(data, {
+			success: function () {
+				$('[data-href=save]').before('<i class="icon-white icon-ok successMark" style="display: none; margin-right: 14px;"></i>');
+				that.$el.find('.successMark').fadeIn(200).delay(3000).fadeOut(200, function(){
+					that.$el.find('.successMark').remove();
+				});
+			}
+        });
+		
+        return false;
+	
 	}
 	
 });
@@ -224,6 +250,7 @@ var ProjectEditView = ProjectView.extend({
 		"click [data-href=overview]"	: "tabTriggered",
 		"click [data-href=data]"		: "tabTriggered",
 		"click [data-href=info]"		: "tabTriggered",
+		"click [data-href=save]"		: "saveProject",
 		"click [data-href=edit]"		: function() {window.app.router.navigate("//project/" + this.model.get('id') + "/" + this.currentTab, true)}
 	},
 	
