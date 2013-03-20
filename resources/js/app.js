@@ -253,8 +253,6 @@ var ProjectEditView = ProjectView.extend({
 		
 		data.id = this.model.get('id');
 		
-		console.log(data);
-		
 		var that = this;
 		
 		this.model.save(data, {
