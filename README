@@ -17,3 +17,8 @@ Web Setup
 * /owcms - All files for the base of the website for oWeb CMS
 * /resources - CSS, JS, etc for public web
 * /server - API Calls for Backbone.js
+
+License
+-------
+
+Feel free to use our code for private/educational use, just don't redistribute it without permission.
