@@ -5,6 +5,7 @@
 <? if (!$this->is_bare()) { ?>
 <div id="footer">
     Team Zero Day, Imagine Cup 2013 - World Citizenship
+	<img src="http://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png"></img>
 </div><!--#footer-->
 <? } ?>
 
