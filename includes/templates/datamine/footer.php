@@ -77,7 +77,7 @@ if (typeof jQuery == 'undefined')
 <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js" type="text/javascript"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.10/backbone-min.js"></script>
 
-<script type="text/javascript" src="/resources/js/jquery-ui-1.10.0.custom/js/jquery-ui-1.10.0.custom.min.js"></script>
+<!-- <script type="text/javascript" src="/resources/js/jquery-ui-1.10.0.custom/js/jquery-ui-1.10.0.custom.min.js"></script> -->
 <script type="text/javascript" src="/resources/bootstrap-2.3.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/resources/tinymce-3.5.8/jscripts/tiny_mce/tiny_mce.js"></script>
 <script type="text/javascript" src="/resources/js/global.js"></script>

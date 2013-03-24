@@ -30,7 +30,7 @@ echo '<!DOCTYPE html>
 	    </style>
 		<link rel="stylesheet" href="/resources/bootstrap-2.3.1/css/bootstrap-responsive'.$testingMin.'.css" type="text/css" />
 		<link rel="stylesheet" href="/resources/css/style.css?v=1.1" type="text/css" />
-		<link type="text/css" href="/resources/js/jqueryui/css/sdband/jquery-ui-1.8.16.custom.css" rel="stylesheet" />';
+		<!-- <link type="text/css" href="/resources/js/jqueryui/css/sdband/jquery-ui-1.8.16.custom.css" rel="stylesheet" /> -->';
 		
 		echo stripcslashes($option->details('ga'));
 
