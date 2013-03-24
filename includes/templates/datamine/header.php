@@ -55,6 +55,8 @@ echo '<body id="page-'.$this->details('slug').'" '.$bodyclass.'>'; ?>
 
 <?php echo stripcslashes($this->details('header')); ?>
 
+<!-- UP UP DOWN DOWN LEFT RIGHT LEFT RIGHT B A -->
+
 <? /* Normal Navigation */	
 
 if (!$this->is_bare()) {
