@@ -251,6 +251,9 @@ var ProjectEditView = ProjectView.extend({
 		
 		var data = $(this.$el.find('form')).serializeObject();
 		
+		console.log(data);
+		return false;
+		
 		data.id = this.model.get('id');
 		
 		var that = this;
