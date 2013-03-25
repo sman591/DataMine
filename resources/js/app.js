@@ -248,11 +248,14 @@ var ProjectEditView = ProjectView.extend({
 	
 	saveProject: function(){
 		
+		$('textarea.mceEditor').each(function(){
+			
+			id = $(this).attr('id');
+			tinyMCE.get(id).save();
+			
+		});
 		
 		var data = $(this.$el.find('form')).serializeObject();
-		
-		console.log(data);
-		return false;
 		
 		data.id = this.model.get('id');
 		
