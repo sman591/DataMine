@@ -304,8 +304,11 @@ var AppRouter = Backbone.Router.extend({
 	start: function(){
 
 		this.bind("all",function(route, router) {
-		    if (route !== 'route')
+			console.log('route called');
+		    if (route !== 'route'){
 		    	this.previousRoute = route.substr(route.indexOf('route:')+6);
+		    	console.log('fadfsdf');
+		    }
 		});
 
 		Backbone.history.start();
@@ -418,6 +421,10 @@ var AppRouter = Backbone.Router.extend({
 		
 		if (this.previousRoute !== 'editProject')
 			this.projectEditView.render();
+			
+		$('textarea.mceEditor-none:visible').each(function() {
+			tinyMCE.execCommand('mceAddControl', false, $(this).attr('id'));
+		});
 	
 	}
 
