@@ -617,6 +617,7 @@ table.users-admin td {padding: 11px 11px;}
     2px -2px 0 rgba(0,0,0,.45),
     -2px 2px 0 rgba(0,0,0,.45),
     2px 2px 0 rgba(0,0,0,.45);
+    filter: progid:DXImageTransform.Microsoft.Shadow(color=#000000,direction=90);
 }
 
 .project-carousel .carousel-caption p {
