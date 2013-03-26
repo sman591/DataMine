@@ -22,7 +22,7 @@ class Project {
 		
 		$return_params = $all_params;
 		
-		unset($return_params['id'], $return_params['modified'], $return_params['last_modified_by'], $return_params['created']);
+		unset($return_params['modified'], $return_params['last_modified_by'], $return_params['created']);
 		
 		$this->allowed_return_params = $return_params;
 		
