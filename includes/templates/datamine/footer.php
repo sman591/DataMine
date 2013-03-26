@@ -91,6 +91,7 @@ if (typeof jQuery == 'undefined')
 
 <? 	include 'backbone/user.php';
 	include 'backbone/project.php';
+	include 'backbone/projectListItem.php';
 ?>
 
 <script src="/resources/js/app.js" type="text/javascript"></script>

@@ -153,6 +153,51 @@ var Project = Backbone.Model.extend({
 	
 });
 
+var ProjectList = Backbone.Collection.extend({
+	
+	url: '/projects',
+	model: Project
+	
+});
+
+var ProjectListItemView = Backbone.View.extend({
+	
+	className: 'projectListItem',
+	id: 'project-list-item-view',
+	
+	initialize: function(){
+	
+		this.model.on("change", this.render, this);
+	
+	},
+	
+	template: _.template($('#projectListItem_template').html()),
+	
+	render: function(){
+		
+		var attributes = this.model.toJSON();
+		this.$el.html(this.template(attributes));
+		
+		return this;
+		
+	}
+	
+});
+
+var ProjectListView = Backbone.View.extend({
+	
+	render: function(){
+		this.collection.forEach(this.addOne, this);
+	},
+	
+	addOne: function(projectItem){
+
+		var itemView = new ProjectListItemView({model: projectItem});
+		this.$el.append(itemView.render().el);
+	}
+	
+});
+
 var ProjectView = Backbone.View.extend({
 	
 	className: 'projectView',
@@ -385,7 +430,17 @@ var AppRouter = Backbone.Router.extend({
 
 	projectIndex: function(){
 		
-		this.showPage('projects');
+		var projectList = new ProjectList();
+		
+		projectList.fetch();
+		
+		projectList.on('sync', function() {
+			
+			var projectListView = new ProjectListView({collection: projectList});
+			projectListView.render();
+			$('#guts').html(projectListView.el);
+		
+		});
 	
 	},
 	

@@ -270,6 +270,15 @@ $app->get('/project(/:id)', function ($id = false) {
 	
 });
 
+$app->get('/projects', function ($id = false) {
+	
+	include 'classes/projectList.php';
+	
+	$project = new ProjectList();
+	$project->get();
+	
+});
+
 
 $app->post('/project', function () {
 	
