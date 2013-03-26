@@ -75,7 +75,7 @@ if (typeof jQuery == 'undefined')
 </script>
 
 <script src="/resources/js/underscore-1.4.4.min.js" type="text/javascript"></script>
-<script src="/resources/js/backbone-0.9.10.min.js"></script>
+<script src="/resources/js/backbone-1.0.min.js"></script>
 <script src="/resources/js/backbone.routefilter.min.js"></script>
 
 <script src="/resources/js/jquery.fittext.js"></script>
