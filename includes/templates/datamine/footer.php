@@ -66,16 +66,17 @@ $testingMin = '';
 
 ?>
 
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
 <script type="text/javascript">
 if (typeof jQuery == 'undefined')
 {
-    document.write(unescape("%3Cscript src='/resources/js/jquery-1.8.3.min.js' type='text/javascript'%3E%3C/script%3E"));
+    document.write(unescape("%3Cscript src='/resources/js/jquery-1.9.1.min.js' type='text/javascript'%3E%3C/script%3E"));
 }
 </script>
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js" type="text/javascript"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.10/backbone-min.js"></script>
+<script src="/resources/js/underscore-1.4.4.min.js" type="text/javascript"></script>
+<script src="/resources/js/backbone-0.9.10.min.js"></script>
+<script src="/resources/js/backbone.routefilter.min.js"></script>
 
 <!-- <script type="text/javascript" src="/resources/js/jquery-ui-1.10.0.custom/js/jquery-ui-1.10.0.custom.min.js"></script> -->
 <script type="text/javascript" src="/resources/bootstrap-2.3.1/js/bootstrap.min.js"></script>
@@ -99,6 +100,8 @@ $(function() {
 	var app = app || {};
 	
 	window.app = app;
+	
+	window.app.debug = false;
 	
 	window.app.router = new AppRouter();
 	

@@ -161,7 +161,7 @@
 						<p>&nbsp;</p>
 						
 						<legend>Overview Content</legend>
-						<textarea name="content" id="content" class="span12 mceEditor-none" style="height: 400px;" placeholder="Content for the overview (default) tab"><%= content %></textarea>
+						<textarea name="content" id="content" class="span12 mceEditor" style="height: 400px;" placeholder="Content for the overview (default) tab"><%= content %></textarea>
 					
 					</fieldset>
 				</div>
@@ -182,7 +182,7 @@
 						<p>&nbsp;</p>
 					
 						<legend>Contribute Content</legend>
-						<textarea name="contribute_content" id="contribute_content" class="span12 mceEditor-none" style="height: 400px;" placeholder="Content for the contribute tab"><%= contribute_content %></textarea>
+						<textarea name="contribute_content" id="contribute_content" class="span12 mceEditor" style="height: 400px;" placeholder="Content for the contribute tab"><%= contribute_content %></textarea>
 					
 					</fieldset>
 				</div>
@@ -192,7 +192,7 @@
 					</div>
 					
 					<legend>Data Content</legend>
-					<textarea name="data_content" id="data_content" class="span12 mceEditor-none" style="height: 400px;" placeholder="Content for the data tab"><%= data_content %></textarea>
+					<textarea name="data_content" id="data_content" class="span12 mceEditor" style="height: 400px;" placeholder="Content for the data tab"><%= data_content %></textarea>
 					
 					<p>&nbsp;</p>
 						
@@ -206,7 +206,7 @@
 					<fieldset>
 					
 						<legend>Content</legend>
-						<textarea name="info_content" id="info_content" class="span12 mceEditor-none" style="height: 400px;" placeholder="Content for the more info tab"><%= info_content %></textarea>
+						<textarea name="info_content" id="info_content" class="span12 mceEditor" style="height: 400px;" placeholder="Content for the more info tab"><%= info_content %></textarea>
 					
 					</fieldset>
 				</div>
@@ -217,8 +217,22 @@
 	<script type="text/javascript">
 	tinyMCE.init({
 	        theme : "advanced",
-	        mode : "none",
-	        editor_selector : "mceEditor-none",
+	        mode : "specific_textareas",
+	        editor_selector : "mceEditor",
+	        content_css : "/resources/bootstrap-2.3.1/css/bootstrap.min.css,/resources/cosmo-2.3.1/css/bootstrap.min.css,/resources/css/style.css",
+	        plugins : "fullscreen, codemagic",
+	        theme_advanced_buttons3_add : "fullscreen, codemagic",
+	        fullscreen_new_window : true,
+	        fullscreen_settings : {
+	                theme_advanced_path_location : "top"
+	        },
+	        width: "100%"
+	});
+	
+	tinyMCE.init({
+	        theme : "simple",
+	        mode : "specific_textareas",
+	        editor_selector : "mceEditor-simple",
 	        content_css : "/resources/bootstrap-2.3.1/css/bootstrap.min.css,/resources/cosmo-2.3.1/css/bootstrap.min.css,/resources/css/style.css",
 	        plugins : "fullscreen, codemagic",
 	        theme_advanced_buttons3_add : "fullscreen, codemagic",

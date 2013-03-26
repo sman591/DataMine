@@ -18,6 +18,13 @@ $.fn.serializeObject = function() {
   return o;
 };
 
+function debug(message) {
+	
+	if (window.app.debug === true)
+		console.log(message);
+	
+}
+
 
 Backbone.View.prototype.close = function () {
   this.$el.empty();
@@ -176,7 +183,7 @@ if (this.model.get('title') !== undefined)
 	
 	render: function(){
 		
-		console.log('Project' + (this.edit == true ? "Edit" : "") + 'View Rendered'); // Debugging
+		debug('Project' + (this.edit == true ? "Edit" : "") + 'View Rendered'); // Debugging
 		
 		var attributes = this.model.toJSON();
 		this.$el.html(this.template(attributes));
@@ -281,7 +288,7 @@ var ProjectEditView = ProjectView.extend({
 
 var AppRouter = Backbone.Router.extend({
 	
-	previousRoute: undefined,
+	previousRoute: '',
 	
 	routes: {
 		
@@ -303,18 +310,34 @@ var AppRouter = Backbone.Router.extend({
 	
 	start: function(){
 
-		this.bind("all",function(route, router) {
-			console.log('route called');
-		    if (route !== 'route'){
-		    	this.previousRoute = route.substr(route.indexOf('route:')+6);
-		    	console.log('fadfsdf');
-		    }
-		});
-
 		Backbone.history.start();
-		
-		this.previousRoute = 'editProject';
 	
+	},
+	
+	before: function(route) {
+	
+		if (this.previousRoute == '') {
+			this.previousRoute = this.routes[route];
+			debug('previousRoute set to ' + this.previousRoute + " (before)");
+		}
+		
+	},
+	
+	after: function( route ) {
+	
+		if (this.previousRoute !== this.routes[route]) {
+			this.previousRoute = this.routes[route];
+			debug('previousRoute set to ' + this.previousRoute);
+		}
+		else
+			debug('previousRoute is the same');
+		
+	},
+	
+	initialize: function() {
+	
+		this._bindRoutes();	
+		
 	},
 	
 	index: function(){
@@ -364,9 +387,9 @@ var AppRouter = Backbone.Router.extend({
 	},
 	
 	init_project: function(id) {
-
+		
 		this.project = new Project({id: id});
-			
+
 		this.project.on("request", loading_notice('show'));
 		this.project.on("sync", loading_notice('hide'));
 		
@@ -381,17 +404,16 @@ var AppRouter = Backbone.Router.extend({
 		
 		if (!this.project || this.project.get('id') !== id)
 			this.init_project(id);
-		
+
 		if (this.projectView == undefined || this.previousRoute !== 'showProject' || this.projectView.model.get("id") !== id) {
 			this.projectView = new ProjectView({model: this.project});
 			$('#guts').html(this.projectView.el);
 			this.projectView.currentTab = tab;
+			this.project.fetch();
 		}
 		else {
 			this.projectView.changeTab(tab);
 		}
-		
-		this.project.fetch();
 		
 		if (this.previousRoute !== 'showProject')
 			this.projectView.render();
@@ -412,19 +434,14 @@ var AppRouter = Backbone.Router.extend({
 			this.projectEditView = new ProjectEditView({model: this.project});
 			$('#guts').html(this.projectEditView.el);
 			this.projectEditView.currentTab = tab;
+			this.project.fetch();
 		}
 		else {
 			this.projectEditView.changeTab(tab);
 		}
 		
-		this.project.fetch();
-		
 		if (this.previousRoute !== 'editProject')
 			this.projectEditView.render();
-			
-		$('textarea.mceEditor-none:visible').each(function() {
-			tinyMCE.execCommand('mceAddControl', false, $(this).attr('id'));
-		});
 	
 	}
 
