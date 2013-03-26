@@ -189,6 +189,7 @@ var ProjectListView = Backbone.View.extend({
 	className: 'project-list',
 	
 	render: function(){
+		this.$el.prepend('<div class="page-header"><h2>All Projects</h2></div>');
 		this.collection.forEach(this.addOne, this);
 	},
 	
