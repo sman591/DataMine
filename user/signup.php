@@ -13,7 +13,7 @@ $attempt = $user->signup($_POST['email'], $user_details);
 
 if ($attempt === true) {
 
-	header("Location: /?signup=success");
+	header("Location: //".URL."/?signup=success");
 
 }
 else {
@@ -24,7 +24,7 @@ else {
 		'email'			=> $_POST['email']
 	);
 
-	header("Location: ".SIGNUP_URL."?signup_error=".base64_encode($attempt)."&signup_details=".base64_encode(json_encode($return_details)));
+	header("Location: //".URL.SIGNUP_URL."?signup_error=".base64_encode($attempt)."&signup_details=".base64_encode(json_encode($return_details)));
 
 }
 
