@@ -78,6 +78,8 @@ if (typeof jQuery == 'undefined')
 <script src="/resources/js/backbone-0.9.10.min.js"></script>
 <script src="/resources/js/backbone.routefilter.min.js"></script>
 
+<script src="/resources/js/jquery.fittext.js"></script>
+
 <!-- <script type="text/javascript" src="/resources/js/jquery-ui-1.10.0.custom/js/jquery-ui-1.10.0.custom.min.js"></script> -->
 <script type="text/javascript" src="/resources/bootstrap-2.3.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/resources/tinymce-3.5.8/jscripts/tiny_mce/tiny_mce.js"></script>

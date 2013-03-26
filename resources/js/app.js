@@ -190,6 +190,9 @@ if (this.model.get('title') !== undefined)
 		
 		this.changeTab(this.currentTab);
 		
+		$(".project-carousel .carousel-caption h1").fitText(0.87, {minFontSize: '60px'});
+		$(".project-carousel .carousel-caption p").fitText(5.3, {minFontSize: '16px'});
+		
 		return this;
 		
 	},

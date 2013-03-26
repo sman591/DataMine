@@ -581,6 +581,7 @@ table.users-admin td {padding: 11px 11px;}
 	color: #fff;
 	letter-spacing: -1px;
 	font-weight: bold;
+	width: 100%;
 }
 .full-page-carousel .carousel-caption .btn {
   margin-top: 18px;
