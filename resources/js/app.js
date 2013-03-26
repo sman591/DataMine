@@ -186,6 +186,8 @@ var ProjectListItemView = Backbone.View.extend({
 
 var ProjectListView = Backbone.View.extend({
 	
+	className: 'project-list',
+	
 	render: function(){
 		this.collection.forEach(this.addOne, this);
 	},

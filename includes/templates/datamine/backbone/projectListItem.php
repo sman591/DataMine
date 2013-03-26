@@ -14,7 +14,7 @@
 			
 			<p><%= short_desc %></p>
 			
-			<a href="/#/project/1" class="btn btn-primary">Explore This Project <i class="icon-white icon-chevron-right"></i></a>
+			<a href="/#/project/<%= id %>" class="btn btn-primary">Explore This Project <i class="icon-white icon-chevron-right"></i></a>
 		
 		</div>
 		
