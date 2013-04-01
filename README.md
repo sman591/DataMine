@@ -10,8 +10,8 @@ Team Zero Day, Imagine Cup 2013 - World Citizenship.
 Team Members
 ------------
 
-Joban Dhillon ([https://github.com/joban66](https://github.com/joban66))
-Stuart Olivera ([https://github.com/sman591](https://github.com/sman591))
+* Joban Dhillon ([https://github.com/joban66](https://github.com/joban66))
+* Stuart Olivera ([https://github.com/sman591](https://github.com/sman591))
 
 Web Setup
 ------------
