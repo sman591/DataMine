@@ -104,30 +104,8 @@
 </form>
 </div><!--.span12-->
 
-<div id="dialog-user-roles" title="User roles">
-	<div class="ui-state-error ui-corner-all" style="padding: 8px;">Sorry, an error occurred (no content changed).</div>
-</div>
 <script>
 function custom_pageLoad() {
-	$( "#dialog-user-roles" ).dialog({
-		show: {effect: "fade", duration: 300},
-		hide: {effect: "fade", duration: 150},
-		autoOpen: false,
-		height: 300,
-		width: 500,
-		modal: true,
-		buttons: {
-			"Okay": function() {
-				var userid = $('#dialog-user-roles input[name=userid]').val();
-				userRoles(userid, 'save');
-			},
-			Cancel: function() {
-				$( this ).dialog( "close" );
-			}
-		},
-		close: function() {
-			$(this).html('');
-		}
-	});
+
 }
 </script>
