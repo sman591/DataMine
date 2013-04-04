@@ -85,9 +85,8 @@ class Project {
 		else
 			$project = new dm_project('id:'.$this->get_id());
 	
-		if (!$project->exists()) {
+		if (!$project->exists())
 			die(json_encode(array('error' => 'No project exists')));
-		}
 		
 		global $db;
 		
@@ -118,9 +117,9 @@ class Project {
 		
 		$set_params = "";
 		
-		foreach ($params as $key => $value) {
+		foreach ($params as $key => $value)
 			$set_params .= "`".ltrim($key, ":")."`=".$key.", ";
-		}
+		
 		
 		$set_params = rtrim($set_params, ", "); /* Remove last , from $set_params */
 		

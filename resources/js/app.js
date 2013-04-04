@@ -472,9 +472,8 @@ var AppRouter = Backbone.Router.extend({
 			this.projectView.currentTab = tab;
 			this.project.fetch();
 		}
-		else {
+		else
 			this.projectView.changeTab(tab);
-		}
 		
 		if (this.previousRoute !== 'showProject')
 			this.projectView.render();
