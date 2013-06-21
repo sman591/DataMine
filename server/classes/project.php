@@ -12,7 +12,7 @@ class Project {
 		
 		foreach ($db->query("SELECT `COLUMN_NAME` 
 					FROM INFORMATION_SCHEMA.COLUMNS
-					WHERE table_name = 'projects' AND table_schema = 'datamine'") as $row => $column) {
+					WHERE table_name = 'projects' AND table_schema = '".MYSQL_TABLE."'") as $row => $column) {
 		
 			$all_params[$column['COLUMN_NAME']] = $column['COLUMN_NAME'];
 					
