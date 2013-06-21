@@ -88,6 +88,8 @@
 			</div>
 		</div>
 		
+		<div class="alert alert-info"><i class="icon-info-sign icon-white"></i>&nbsp;&nbsp;Please note if you are not logged in, modified data will not be saved.</div>
+		
 		<div class="editing-notice">
 			
 			<div class="container-fluid">
